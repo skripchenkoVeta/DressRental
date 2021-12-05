@@ -1,0 +1,24 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: rails
+  password: password
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: DressRental_development
+
+
+test:
+  <<: *default
+  database: DressRental_test
+
+production:
+  <<: *default
+  database: DressRental_production
+  username: DressRental
+  password: <%= ENV['DRESSRENTAL_DATABASE_PASSWORD'] %>
