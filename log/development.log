@@ -604,3 +604,10 @@ Migrating to CreateImages (20211205223353)
   [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(165536884552367160)[0m
   [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mSalon Load (0.8ms)[0m  [1m[34mSELECT "salons".* FROM "salons" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mType Load (1.4ms)[0m  [1m[34mSELECT "types".* FROM "types" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTypeOfUser Load (5.4ms)[0m  [1m[34mSELECT "type_of_users".* FROM "type_of_users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mSellerInfo Load (5.1ms)[0m  [1m[34mSELECT "seller_infos".* FROM "seller_infos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mBuyerInfo Load (1.4ms)[0m  [1m[34mSELECT "buyer_infos".* FROM "buyer_infos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]

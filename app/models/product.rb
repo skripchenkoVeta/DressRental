@@ -5,6 +5,6 @@ class Product < ApplicationRecord
     has_many :image, as: :imageable
 
     validates :name, presence: true
-    validates :price, numericality: true , numericality: { greater_than: 0}, presence: true
-    validates :description, length: { minimum: 15 } presence: true
+    validates :price, numericality: { greater_than: 0}, presence: true
+    validates :description, length: { minimum: 15 }, presence: true
 end
