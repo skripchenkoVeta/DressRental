@@ -5,76 +5,93 @@
 #
 # Examples:
 #
-
-seller_types_table = SellerType.create([
-                                         { name: 'ИП' },
-                                         { name: 'не ИП' },
-                                         { name: 'организация' },
-                                         { name: 'не организация' }
-                                       ])
-
-product_types_table = ProductType.create([
-                                           { name: 'Платье' },
-                                           { name: 'Костюм' },
-                                           { name: 'Фрак' }
-                                         ])
-
-seller_table = SellerInfo.create([
-                                   { unp: 127, kpp: 189, supplier_name: 'Валера',
-                                     seller_type_id: seller_types_table.last },
-                                   { unp: 543, kpp: 145, supplier_name: 'ИП "Подружка"',
-                                     seller_type_id: seller_types_table.first },
-                                   { unp: 134, kpp: 345, supplier_name: 'самостоятельное производство',
-                                     seller_type_id: seller_types_table.last }
-                                 ])
-buyer_table = BuyerInfo.create([
-                                 { birthday: '1998-02-11', address: 'ул. Логово,1' },
-                                 { birthday: '2003-07-01', address: 'ул. Лог,10' },
-                                 { birthday: '1990-10-09', address: 'ул. Гов,190-А' }
-                               ])
-
-users_seller_table = User.create([
-                                   { name: 'Сергей', surname: 'Серегин', email: 'seregin@gmail.con', number: '37456', password: '1234', role: 'seller',
-                                     profileable: seller_table.last },
-                                   { name: 'Алена', surname: 'Архимина', email: 'алена@gmail.con', number: '3234', password: '1234', role: 'seller',
-                                     profileable: seller_table.first }
-                                 ])
-users_buyer_table = User.create([
-                                  { name: 'Аська', surname: 'Пугачева', email: 'аська@gmail.con', number: '1236', password: '1234', role: 'buyer',
-                                    profileable: buyer_table.last },
-                                  { name: 'Антон', surname: 'Дятлов', email: 'дятлов@gmail.con', number: '3556', password: '1234', role: 'buyer',
-                                    profileable: buyer_table.first }
-                                ])
-
-salons_table = Salon.create([
-                              { name: 'ИП Серегин', address: 'ул.Пупкино,65', seller_info_id: seller_table.last },
-                              { name: 'ИП НеСерегин', address: 'пер.Московский,3', seller_info_id: seller_table.first },
-                              { name: 'ИП Красота', address: 'пр.Независимости,127-Б',
-                                seller_info_id: seller_table.last },
-                              { name: 'ИП Милан', address: 'ул.Встречная,34', seller_info_id: seller_table.last },
-                              { name: 'ИП Любовь', address: 'ул.Артура Пирожкова,1',
-                                seller_info_id: seller_table.last },
-                              { name: 'ИП Космос', address: 'ул.Стукино,51-А', seller_info_id: seller_table.first }
-                            ])
-
-products_table = Product.create([
-                                  { name: 'Платье белое', description: 'Очень красивое платье', price: 18.00, product_type_id: product_types_table.last,
-                                    salon_id: salons_table.last },
-                                  { name: 'Костюм красивый', description: 'Дешево и сердито', price: 1.00, product_type_id: product_types_table.first,
-                                    salon_id: salons_table.last },
-                                  { name: 'Костюм. Штаны', description: 'Да,от костюма есть лишь штаны. И что???', price: 8.00,
-                                    product_type_id: product_types_table.last, salon_id: salons_table.first },
-                                  { name: 'Платье "Похоронное"', description: 'Все для праздника', price: 32.00,
-                                    product_type_id: product_types_table.last, salon_id: salons_table.last },
-                                  { name: 'Фрак для ребенка', description: 'Фрак для 7-10 лет', price: 56.00, product_type_id: product_types_table.first,
-                                    salon_id: salons_table.last },
-                                  { name: 'Фрак', description: 'Качественные материалы', price: 90.00, product_type_id: product_types_table.last,
-                                    salon_id: salons_table.first },
-                                  { name: 'Платье "Винтаж"', description: 'Для настоящих леди', price: 40.00, product_type_id: product_types_table.first,
-                                    salon_id: salons_table.first }
-                                ])
-
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+SellerInfo.delete_all
+SellerType.delete_all
+ProductType.delete_all
+User.delete_all
+Salon.delete_all
+Product.delete_all
+Comment.delete_all
+
+seller_type_1 = SellerType.create(name: 'SP')
+seller_type_2 = SellerType.create(name: 'SP with PIT')
+seller_type_3 = SellerType.create(name: 'organization')
+seller_type_4 = SellerType.create(name: 'organization with PIT')
+
+product_type_1 = ProductType.create(name: 'Headdress')
+product_type_2 = ProductType.create(name: 'Dress')
+product_type_3 = ProductType.create(name: 'Suit')
+product_type_4 = ProductType.create(name: 'Tailcoat')
+product_type_5 = ProductType.create(name: 'Accessory')
+
+seller_1 = SellerInfo.create(unp: 127098765, kpp: 184562349, supplier_name: 'Independent production',seller_type_id: seller_type_3.id)
+seller_2 = SellerInfo.create(unp: 677878765, kpp: 454662349, supplier_name: 'SP "for u"',seller_type_id: seller_type_4.id)
+seller_3 = SellerInfo.create(unp: 987658765, kpp: 156756649, supplier_name: 'Independent production',seller_type_id: seller_type_1.id)
+seller_4 = SellerInfo.create(unp: 900878765, kpp: 985676549, supplier_name: 'SP "Friend"',seller_type_id: seller_type_2.id)
+
+buyer_1 = BuyerInfo.create(birthday: '1998-02-11', address: 'ул. Логово,1')
+buyer_2 = BuyerInfo.create(birthday: '2003-07-01', address: 'ул. Лог,10')
+buyer_3 = BuyerInfo.create(birthday: '1990-10-09', address: 'ул. Гов,190-А')
+
+user_seller_1 = User.create(name: 'Sergey', surname: 'Brooks', email: 'serbrook@gmail.con', number: '+375697895467', password: '1234', role: 'seller', profileable: seller_2)
+user_seller_2 = User.create(name: 'Alena', surname: 'Alenkova', email: 'alenkova@gmail.con', number: '+375890976788', password: '1234', role: 'seller',profileable: seller_3)
+user_seller_3 = User.create(name: 'Maksim', surname: 'Sablin', email: 'sablin@gmail.con', number: '+375678995499', password: '1234', role: 'seller', profileable: seller_1)
+user_seller_4 = User.create(name: 'Mark', surname: 'Bobrov', email: 'bobrov@gmail.con', number: '+375890666780', password: '1234', role: 'seller',profileable: seller_4)
+
+user_buyer_1 = User.create(name: 'Vladislav', surname: 'Burdo', email: 'vladik@gmail.con', number: '+375293045600', password: '1234', role: 'buyer',profileable: buyer_1)
+user_buyer_2 = User.create(name: 'Yana', surname: 'Kurko', email: 'kurko@gmail.con', number: '+375295555678', password: '1234', role: 'buyer',profileable: buyer_2)
+user_buyer_3 = User.create(name: 'Alina', surname: 'Lopatina', email: 'lopatkina@gmail.con', number: '+37529304234', password: '1234', role: 'buyer',profileable: buyer_3)
+
+user_admin_1 = User.create(name: 'Karina', surname: 'Stukina', email: 'amongus@gmail.con', number: '+375445474967', password: '1111', role: 'admin',profileable: buyer_3)
+user_admin_2 = User.create(name: 'Andrey', surname: 'Frolov', email: 'bigger@gmail.con', number: '+375293334567', password: '2222', role: 'admin',profileable: buyer_3)
+
+salon_1 = Salon.create(name: 'Fly', address: 'Loma,65', seller_info_id: seller_1.id)
+salon_2 = Salon.create(name: 'Rose', address: 'Komarov,89-A', seller_info_id: seller_1.id)
+salon_3 = Salon.create(name: 'Fire', address: 'Temir,12', seller_info_id: seller_2.id)
+salon_4 = Salon.create(name: 'Flower', address: 'Vstrech,1-A', seller_info_id: seller_3.id)
+salon_5 = Salon.create(name: 'Sun', address: 'Kartech,6', seller_info_id: seller_4.id)
+
+product_1 = Product.create(name: 'Wedding dress', description: 'Very beautiful dress', price: 180.00, product_type_id: product_type_2.id, salon_id: salon_1.id )
+product_2 = Product.create(name: 'Red dress', description: 'Very red dress', price: 18.60, product_type_id: product_type_2.id, salon_id: salon_1.id )
+product_3 = Product.create(name: 'Original dress', description: 'An excellent choice for a special day', price: 100.10, product_type_id: product_type_2.id, salon_id: salon_1.id )
+product_4 = Product.create(name: 'White suit', description: 'An excellent choice for a special day', price: 45.00, product_type_id: product_type_3.id, salon_id: salon_1.id )
+product_5 = Product.create(name: 'Suit "Beautiful"', description: 'Made with quality materials', price: 19.99, product_type_id: product_type_3.id, salon_id: salon_2.id )
+product_6 = Product.create(name: 'Blue dress', description: 'Very blue dress', price: 13.00, product_type_id: product_type_2.id, salon_id: salon_2.id )
+product_7 = Product.create(name: 'White suit', description: 'For the most fashionable', price: 60.60, product_type_id: product_type_3.id, salon_id: salon_2.id )
+product_8 = Product.create(name: 'Black dress', description: 'Very beautiful dress', price: 70.20, product_type_id: product_type_2.id, salon_id: salon_2.id )
+product_9 = Product.create(name: 'Nice suit', description: 'Made with quality materials', price: 50.00, product_type_id: product_type_3.id, salon_id: salon_3.id )
+product_10 = Product.create(name: 'Headdress "For you"', description: 'An excellent choice for a special day', price: 10.60, product_type_id: product_type_1.id, salon_id: salon_3.id )
+product_11 = Product.create(name: 'White dress', description: 'Very beautiful dress', price: 15.00, product_type_id: product_type_2.id, salon_id: salon_4.id )
+product_12 = Product.create(name: 'Good headdress', description: 'For the most fashionable', price: 22.00, product_type_id: product_type_1.id, salon_id: salon_4.id )
+product_13 = Product.create(name: 'Headdress "Nice day"', description: 'An excellent choice for a special day', price: 87.00, product_type_id: product_type_1.id, salon_id: salon_4.id )
+product_14 = Product.create(name: 'Good dress', description: 'Made with quality materials', price: 17.00, product_type_id: product_type_2.id, salon_id: salon_5.id )
+product_15 = Product.create(name: 'Beautiful dress', description: 'Very beautiful dress', price: 31.00, product_type_id: product_type_2.id, salon_id: salon_5.id )
+product_16 = Product.create(name: 'Tailcoat "Lost"', description: 'Made with quality materials', price: 90.00, product_type_id: product_type_4.id, salon_id: salon_5.id )
+product_17 = Product.create(name: 'Good tailcoat', description: 'An excellent choice for a special day', price: 89.00, product_type_id: product_type_4.id, salon_id: salon_5.id )
+product_18 = Product.create(name: 'Tailcoat "Kawaii"', description: 'For the most fashionable', price: 88.00, product_type_id: product_type_4.id, salon_id: salon_5.id )
+
+comment_salon_1 = Comment.create(message: 'Great salon!',user_id:buyer_1.id,commentable:salon_1)
+comment_salon_2 = Comment.create(message: 'Recommend!',user_id:buyer_2.id,commentable:salon_1)
+comment_salon_3 = Comment.create(message: 'Life is better than in the photo. ',user_id:buyer_1.id,commentable:salon_2)
+comment_salon_4 = Comment.create(message: 'Not advise, terrible staff and quality of things',user_id:buyer_3.id,commentable:salon_3)
+comment_salon_5 = Comment.create(message: 'Recommend!',user_id:buyer_3.id,commentable:salon_4)
+comment_salon_6 = Comment.create(message: 'Not advise, terrible staff and quality of things',user_id:buyer_2.id,commentable:salon_5)
+
+comment_product_1 = Comment.create(message: 'Nice dress for your money!',user_id:buyer_1.id,commentable:product_1)
+comment_product_2 = Comment.create(message: 'So-so ...',user_id:buyer_2.id,commentable:product_1)
+comment_product_3 = Comment.create(message: 'I do not advise, the quality is terrible.',user_id:buyer_1.id,commentable:product_3)
+comment_product_4 = Comment.create(message: 'I found a hole in my clothes!1!!',user_id:buyer_1.id,commentable:product_4)
+comment_product_5 = Comment.create(message: 'So-so ...',user_id:buyer_3.id,commentable:product_4)
+comment_product_6 = Comment.create(message: 'I found a hole in my clothes!1!!',user_id:buyer_3.id,commentable:product_8)
+comment_product_7 = Comment.create(message: 'Good quality.',user_id:buyer_1.id,commentable:product_8)
+comment_product_8 = Comment.create(message: 'I do not advise, the quality is terrible.',user_id:buyer_3.id,commentable:product_1)
+comment_product_9 = Comment.create(message: 'So-so ...',user_id:buyer_2.id,commentable:product_8)
+comment_product_10 = Comment.create(message: 'I do not advise, the quality is terrible.',user_id:buyer_2.id,commentable:product_4)
+comment_product_11 = Comment.create(message: 'Good quality.',user_id:buyer_2.id,commentable:product_1)
+comment_product_12 = Comment.create(message: 'Nice dress for your money!',user_id:buyer_3.id,commentable:product_3)
+
 
 p 'Работает'
