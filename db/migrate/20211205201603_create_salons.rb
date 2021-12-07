@@ -6,6 +6,7 @@ class CreateSalons < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :address
       t.references :seller_info
+      
       t.timestamps
     end
   end
