@@ -27,6 +27,11 @@ seller_table = SellerInfo.create([
                                    { unp: 134, kpp: 345, supplier_name: 'самостоятельное производство',
                                      seller_type_id: seller_types_table.last }
                                  ])
+buyer_table = BuyerInfo.create([
+                                 { birthday: '1998-02-11', address: 'ул. Логово,1' },
+                                 { birthday: '2003-07-01', address: 'ул. Лог,10' },
+                                 { birthday: '1990-10-09', address: 'ул. Гов,190-А' }
+                               ])
 
 users_seller_table = User.create([
                                    { name: 'Сергей', surname: 'Серегин', email: 'seregin@gmail.con', number: '37456', password: '1234', role: 'seller',
@@ -36,9 +41,9 @@ users_seller_table = User.create([
                                  ])
 users_buyer_table = User.create([
                                   { name: 'Аська', surname: 'Пугачева', email: 'аська@gmail.con', number: '1236', password: '1234', role: 'buyer',
-                                    profileable: seller_table.last },
+                                    profileable: buyer_table.last },
                                   { name: 'Антон', surname: 'Дятлов', email: 'дятлов@gmail.con', number: '3556', password: '1234', role: 'buyer',
-                                    profileable: seller_table.first }
+                                    profileable: buyer_table.first }
                                 ])
 
 salons_table = Salon.create([
