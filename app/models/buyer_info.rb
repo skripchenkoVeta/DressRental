@@ -1,6 +1,5 @@
 class BuyerInfo < ApplicationRecord
-    has_one :user, as: :profileable
-    has_one :image, as: :imageable
+   has_one :user, as: :profileable # check to work
 
-    validates :name,:birthday, presence: true
+    validates :birthday, presence: true
 end

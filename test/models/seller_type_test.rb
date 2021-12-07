@@ -1,6 +1,6 @@
 require "test_helper"
 
-class FormOfOrganizationTest < ActiveSupport::TestCase
+class SellerTypeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

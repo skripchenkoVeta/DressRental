@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_05_223353) do
+ActiveRecord::Schema.define(version: 2021_12_06_194443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,23 +62,17 @@ ActiveRecord::Schema.define(version: 2021_12_05_223353) do
 
   create_table "comments", force: :cascade do |t|
     t.text "message"
-    t.integer "user_id"
-    t.integer "commentable_id"
+    t.bigint "user_id"
     t.string "commentable_type"
+    t.bigint "commentable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "form_of_organizations", force: :cascade do |t|
+  create_table "product_types", force: :cascade do |t|
     t.string "name"
-    t.integer "seller_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.bigint "imageable_id"
-    t.string "imageable_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -87,36 +81,35 @@ ActiveRecord::Schema.define(version: 2021_12_05_223353) do
     t.string "name"
     t.text "description"
     t.float "price"
-    t.integer "salon_id"
+    t.bigint "salon_id"
+    t.bigint "product_type_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_type_id"], name: "index_products_on_product_type_id"
+    t.index ["salon_id"], name: "index_products_on_salon_id"
   end
 
   create_table "salons", force: :cascade do |t|
     t.string "name"
     t.text "address"
+    t.bigint "seller_info_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["seller_info_id"], name: "index_salons_on_seller_info_id"
   end
 
   create_table "seller_infos", force: :cascade do |t|
     t.integer "unp"
     t.integer "kpp"
     t.string "supplier_name"
+    t.bigint "seller_type_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["seller_type_id"], name: "index_seller_infos_on_seller_type_id"
   end
 
-  create_table "type_of_users", force: :cascade do |t|
+  create_table "seller_types", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "types", force: :cascade do |t|
-    t.string "name"
-    t.integer "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -125,10 +118,14 @@ ActiveRecord::Schema.define(version: 2021_12_05_223353) do
     t.string "name"
     t.string "surname"
     t.string "email"
-    t.integer "number"
+    t.string "number"
     t.string "password"
+    t.string "role"
+    t.string "profileable_type"
+    t.bigint "profileable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["profileable_type", "profileable_id"], name: "index_users_on_profileable"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

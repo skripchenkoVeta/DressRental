@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
-    has_one :type
-    belongs_to :salons
-    has_many :comments, as: :commentable
-    has_many :image, as: :imageable
+  #
+   has_one :product_type #name
+   belongs_to :salon
+   has_many :comments, as: :commentable
 
     validates :name, presence: true
     validates :price, numericality: { greater_than: 0}, presence: true
