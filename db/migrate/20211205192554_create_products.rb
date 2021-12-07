@@ -8,6 +8,7 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.float :price
       t.references :salon
       t.references :product_type
+      
       t.timestamps
     end
   end

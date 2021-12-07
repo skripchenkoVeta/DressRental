@@ -6,7 +6,6 @@
 # Examples:
 #
 
-seller_types_table = SellerType.create(name: 'ИП')
 seller_types_table = SellerType.create([
                                          { name: 'ИП' },
                                          { name: 'не ИП' },

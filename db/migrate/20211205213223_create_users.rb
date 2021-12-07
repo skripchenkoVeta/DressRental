@@ -10,7 +10,6 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :password
       t.string :role
       t.references :profileable, polymorphic: true
-
       t.timestamps
     end
   end
