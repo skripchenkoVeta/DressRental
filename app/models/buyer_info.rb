@@ -1,5 +1,7 @@
-class BuyerInfo < ApplicationRecord
-   has_one :user, as: :profileable # check to work
+# frozen_string_literal: true
 
-    validates :birthday, presence: true
+class BuyerInfo < ApplicationRecord
+  has_one :user, as: :profileable # check to work
+
+  validates :birthday, presence: true
 end

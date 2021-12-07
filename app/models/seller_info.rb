@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class SellerInfo < ApplicationRecord
-    has_one :seller_type
-    has_one :user, as: :profileable
-    has_many :salons
-##seller
-   validates :kpp,:unp, numericality: true , presence: true
-    validates :supplier_name, presence: true
+  has_one :seller_type
+  has_one :user, as: :profileable
+  has_many :salons
+  # #seller
+  validates :kpp, :unp, numericality: true, presence: true
+  validates :supplier_name, presence: true
 end

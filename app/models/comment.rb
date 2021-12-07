@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Comment < ApplicationRecord
- belongs_to :commentable, polymorphic: true #нужен метод
+  belongs_to :commentable, polymorphic: true # нужен метод
 end
