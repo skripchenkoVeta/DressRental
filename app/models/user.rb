@@ -29,7 +29,6 @@ class User < ApplicationRecord
   after_initialize :init
 
   def init
-    self.profileable  ||= BuyerInfo.create()         
+    self.profileable ||= BuyerInfo.create
   end
-  
 end

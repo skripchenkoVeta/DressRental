@@ -13,6 +13,5 @@
 #  updated_at       :datetime         not null
 #
 class Comment < ApplicationRecord
-  belongs_to :commentable, polymorphic: true 
-  
+  belongs_to :commentable, polymorphic: true
 end
