@@ -31,4 +31,16 @@ class User < ApplicationRecord
   def init
     self.profileable ||= BuyerInfo.create
   end
+
+  def admin?
+    role == 'admin'
+  end
+
+  def seller?
+    role == 'seller'
+  end
+
+  def buyer?
+    role == 'buyer'
+  end
 end
