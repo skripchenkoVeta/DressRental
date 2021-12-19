@@ -14,7 +14,7 @@
 #
 class SellerInfo < ApplicationRecord
   has_one :seller_type
-  has_one :user, as: :profileable
+  has_one :profile, as: :profileable
   has_many :salons
 
   validates :kpp, :unp, numericality: true, presence: true
