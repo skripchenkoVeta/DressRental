@@ -1,0 +1,11 @@
+<h1>Hello</h1>
+<header>
+<nav>
+<ul>
+<li><%= link_to 'sign up', new_user_registration_path %></li>
+<li><%= link_to 'sign in', user_session_path %></li>
+<li><%= link_to 'sign out', destroy_user_session_path, method: :delete %></li>
+</ul>
+</nav>
+
+</header>
