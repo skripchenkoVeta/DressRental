@@ -11,7 +11,7 @@
 #  updated_at :datetime         not null
 #
 class BuyerInfo < ApplicationRecord
-  has_one :user, as: :profileable 
+  has_one :user, as: :profileable
 
   validates :birthday, presence: true
 end
