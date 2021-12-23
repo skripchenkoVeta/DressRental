@@ -7,6 +7,7 @@
 #
 
 SellerInfo.delete_all
+BuyerInfo.delete_all
 SellerType.delete_all
 ProductType.delete_all
 User.delete_all
@@ -25,26 +26,26 @@ product_type_3 = ProductType.create(name: 'Suit')
 product_type_4 = ProductType.create(name: 'Tailcoat')
 product_type_5 = ProductType.create(name: 'Accessory')
 
-seller_1 = SellerInfo.create(unp: 127098765, kpp: 184562349, supplier_name: 'Independent production',seller_type_id: seller_type_3.id)
-seller_2 = SellerInfo.create(unp: 677878765, kpp: 454662349, supplier_name: 'SP "for u"',seller_type_id: seller_type_4.id)
-seller_3 = SellerInfo.create(unp: 987658765, kpp: 156756649, supplier_name: 'Independent production',seller_type_id: seller_type_1.id)
-seller_4 = SellerInfo.create(unp: 900878765, kpp: 985676549, supplier_name: 'SP "Friend"',seller_type_id: seller_type_2.id)
+seller_1 = SellerInfo.create(unp: 127098765, kpp: 184562349, supplier_name: 'Independent production',seller_type_id: seller_type_3.id, freeze: 'true')
+seller_2 = SellerInfo.create(unp: 677878765, kpp: 454662349, supplier_name: 'SP "for u"',seller_type_id: seller_type_4.id, freeze: 'true')
+seller_3 = SellerInfo.create(unp: 987658765, kpp: 156756649, supplier_name: 'Independent production',seller_type_id: seller_type_1.id, freeze: 'false')
+seller_4 = SellerInfo.create(unp: 900878765, kpp: 985676549, supplier_name: 'SP "Friend"',seller_type_id: seller_type_2.id, freeze: 'false')
 
-buyer_1 = BuyerInfo.create(birthday: '1998-02-11', address: 'ул. Логово,1')
-buyer_2 = BuyerInfo.create(birthday: '2003-07-01', address: 'ул. Лог,10')
-buyer_3 = BuyerInfo.create(birthday: '1990-10-09', address: 'ул. Гов,190-А')
+buyer_1 = BuyerInfo.create(birthday: '1998-02-11', address: 'ул. Логово,1',freeze: 'true')
+buyer_2 = BuyerInfo.create(birthday: '2003-07-01', address: 'ул. Лог,10', freeze: 'true')
+buyer_3 = BuyerInfo.create(birthday: '1990-10-09', address: 'ул. Гов,190-А', freeze: 'true')
 
-user_seller_1 = User.create(name: 'Sergey', surname: 'Brooks', email: 'serbrook@gmail.con', number: '+375697895467', password: '1234', role: 'seller', profileable: seller_2)
-user_seller_2 = User.create(name: 'Alena', surname: 'Alenkova', email: 'alenkova@gmail.con', number: '+375890976788', password: '1234', role: 'seller',profileable: seller_3)
-user_seller_3 = User.create(name: 'Maksim', surname: 'Sablin', email: 'sablin@gmail.con', number: '+375678995499', password: '1234', role: 'seller', profileable: seller_1)
-user_seller_4 = User.create(name: 'Mark', surname: 'Bobrov', email: 'bobrov@gmail.con', number: '+375890666780', password: '1234', role: 'seller',profileable: seller_4)
+user_seller_1 = User.create(name: 'Sergey', surname: 'Brooks', email: 'serbrook@gmail.con', number: '+375697895467', password: '1234567',password_confirmation: '1234567', role: 'Seller', profileable: seller_1)
+user_seller_2 = User.create(name: 'Alena', surname: 'Alenkova', email: 'alenkova@gmail.con', number: '+375890976788', password: '1234567',password_confirmation: '1234567', role: 'Seller',profileable: seller_2)
+user_seller_3 = User.create(name: 'Maksim', surname: 'Sablin', email: 'sablin@gmail.con', number: '+375678995499', password: '1234567',password_confirmation: '1234567', role: 'Seller', profileable: seller_3)
+user_seller_4 = User.create(name: 'Mark', surname: 'Bobrov', email: 'bobrov@gmail.con', number: '+375890666780', password: '1234567',password_confirmation: '1234567', role: 'Seller',profileable: seller_4)
 
-user_buyer_1 = User.create(name: 'Vladislav', surname: 'Burdo', email: 'vladik@gmail.con', number: '+375293045600', password: '1234', role: 'buyer',profileable: buyer_1)
-user_buyer_2 = User.create(name: 'Yana', surname: 'Kurko', email: 'kurko@gmail.con', number: '+375295555678', password: '1234', role: 'buyer',profileable: buyer_2)
-user_buyer_3 = User.create(name: 'Alina', surname: 'Lopatina', email: 'lopatkina@gmail.con', number: '+37529304234', password: '1234', role: 'buyer',profileable: buyer_3)
+user_buyer_1 = User.create(name: 'Vladislav', surname: 'Burdo', email: 'vladik@gmail.con', number: '+375293045600', password: '1234567',password_confirmation: '1234567', role: 'Buyer',profileable: buyer_1)
+user_buyer_2 = User.create(name: 'Yana', surname: 'Kurko', email: 'kurko@gmail.con', number: '+375295555678', password: '1234567',password_confirmation: '1234567', role: 'Buyer',profileable: buyer_2)
+user_buyer_3 = User.create(name: 'Alina', surname: 'Lopatina', email: 'lopatkina@gmail.con', number: '+37529304234', password: '1234567',password_confirmation: '1234567', role: 'Buyer',profileable: buyer_3)
 
-user_admin_1 = User.create(name: 'Karina', surname: 'Stukina', email: 'amongus@gmail.con', number: '+375445474967', password: '1111', role: 'admin',profileable: buyer_3)
-user_admin_2 = User.create(name: 'Andrey', surname: 'Frolov', email: 'bigger@gmail.con', number: '+375293334567', password: '2222', role: 'admin',profileable: buyer_3)
+user_admin_1 = User.create(name: 'Karina', surname: 'Stukina', email: 'amongus@gmail.con', number: '+375445474967', password: '1234567',password_confirmation: '1234567', role: 'Admin')
+user_admin_2 = User.create(name: 'Andrey', surname: 'Frolov', email: 'bigger@gmail.con', number: '+375293334567', password: '1234567',password_confirmation: '1234567', role: 'Admin')
 
 salon_1 = Salon.create(name: 'Fly', address: 'Loma,65', seller_info_id: seller_1.id)
 salon_2 = Salon.create(name: 'Rose', address: 'Komarov,89-A', seller_info_id: seller_1.id)

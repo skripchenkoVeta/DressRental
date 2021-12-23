@@ -1,0 +1,11 @@
+<h1>Hello</h1>
+<header>
+    <nav>
+        <% if user_signed_in? %>
+            <span>Здравствуйте, <%= current_user.email %></span>
+            <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+        <% else %>
+            <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться продавцом', new_user_registration_path %> или <%= link_to 'Зарегистрироваться покупателем', users_buyer_path%>
+        <% end %>
+    </nav>
+</header>
