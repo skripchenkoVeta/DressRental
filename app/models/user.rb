@@ -24,23 +24,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  belongs_to :profileable, polymorphic: true
+  belongs_to :profileable, polymorphic: true, optional: true
 
-  after_initialize :init
-
-  def init
-    self.profileable ||= BuyerInfo.create
-  end
-
-  def admin?
-    role == 'admin'
-  end
-
-  def seller?
-    role == 'seller'
-  end
-
-  def buyer?
-    role == 'buyer'
-  end
+  accepts_nested_attributes_for :profileable
 end
