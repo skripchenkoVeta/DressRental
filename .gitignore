@@ -15,6 +15,12 @@ db/seeds/*_local.rb
 # Ignore bundler config.
 /.bundle
 
+# Ignore node_modules
+/node_modules/
+
+# Ignore packs (should be ignored and generated in production)
+/public/packs/
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
