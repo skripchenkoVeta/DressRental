@@ -28,6 +28,10 @@ gem 'devise'
 # gem 'image_processing', '~> 1.2'
 gem "pundit"
 
+gem 'bootstrap', '~> 5.1.3'
+
+gem 'jquery-rails'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
