@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+
+ .menu{
+   font-size: 25px;
+   background-color: rgb(170, 101, 130);
+   height: 70px;
+}
+.item{
+   border: 3px solid rgba(131, 46, 86, 0.301);
+   margin: 0px 10px;
+}

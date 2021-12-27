@@ -1,0 +1,52 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Number</th>
+      <th scope="col">Email</th>
+      <th scope="col">Freeze</th>
+    </tr>
+  </thead>  
+  <% @user.each_with_index do |index| %>  
+    <%if index.role == 'Buyer'%>                
+      <tr>
+        <td><%= index.name %></td>
+        <td><%= index.surname %></td>
+        <td><%= index.number %></td>
+        <td><%= index.email %></td>
+        <td><%= index.profileable.freeze %></td>
+      </tr>
+    <%end%>
+  <% end %>
+</table>
+<br/>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Number</th>
+      <th scope="col">Email</th>
+      <th scope="col">Freeze</th>
+      <th scope="col">Activity</th>
+    </tr>
+  </thead> 
+  <% @user.each_with_index do |index| %>  
+    <%if index.role == 'Seller'%>                   
+     <tr>
+        <td><%= index.name %></td>
+        <td><%= index.surname %></td>
+        <td><%= index.number %></td>
+        <td><%= index.email %></td>
+        <td><%= index.profileable.freeze%></td>
+        <td>
+        <%if index.confirmed_at == nil%>
+          <%= link_to "confirm", :class => 'btn btn-primary'%>
+        <% else %>
+          <%= index.confirmed_at %></td>
+        <%end%>
+     </tr>
+    <%end%>
+   <% end %>
+</table>
