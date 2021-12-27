@@ -5,9 +5,15 @@ module Users
     before_action :configure_sign_up_params, only: [:create]
     before_action :configure_account_update_params, only: [:update]
 
-    # GET /resource/sign_up
-
+    # GET /resource/buyer
     def buyer
+      build_resource
+      yield resource if block_given?
+      respond_with resource
+    end
+
+    # GET /resource/seller
+    def seller
       build_resource
       yield resource if block_given?
       respond_with resource
@@ -68,10 +74,6 @@ module Users
 
     def sign_up_buyer_params
       params.require(:user).require(:buyer_infos).permit(:address, :birthday, :freeze)
-    end
-
-    def death
-      sign_up_params.require(:user).require(:seller_infos).permit(:kpp, :unp, :supplier_name, :seller_type_id, :freeze)
     end
 
     # If you have extra params to permit, append them to the sanitizer.
