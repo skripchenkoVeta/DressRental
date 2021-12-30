@@ -16,7 +16,10 @@
             <% if user_signed_in? %>
                 <%= link_to 'Log out', destroy_user_session_path, :method => :delete , class: "nav-link item"%>
                   <%if current_user.role == 'Admin'%>
-                    <%= link_to 'Admin', admins_path , class: "nav-link item"%>
+                    <%= link_to 'Users', user_index_path , class: "nav-link item"%>
+                    <%= link_to 'Salons',  salons_path , class: "nav-link item"%>
+                    <%= link_to 'Products', products_path , class: "nav-link item"%>
+                    <%= link_to 'Types',   product_types_path, class: "nav-link item"%>
                   <%end%>
             <% else %>
                 <%= link_to 'Log in', new_user_session_path ,class: "nav-link item"%>

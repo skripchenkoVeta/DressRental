@@ -14,6 +14,7 @@
 class Salon < ApplicationRecord
   has_many :products
   has_many :comments, as: :commentable
+  belongs_to :seller_info
 
   validates :name, :address, presence: true
 end
