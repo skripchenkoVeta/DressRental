@@ -40,7 +40,12 @@
           <td><%= index.surname %></td>
           <td><%= index.number %></td>
           <td><%= index.email %></td>
-          <td><%= index.profileable.freeze %><%= button_to "ban",action:"ban", user_ban_id: index.id, method: :post, :class => 'btn btn-primary'%></td>
+          <td>
+          <%if index.profileable.freeze == false%>
+          <%= button_to "ban",action:"ban", user_ban_id: index.id, method: :post, :class => 'btn btn-primary'%></td>
+        <%else%>
+         <%= button_to "baned",action:"ban", user_ban_id: index.id, method: :post, :class => 'btn btn-primary'%></td>
+         <%end%>
           <td>
             <%if index.confirmed_at == nil%>
               <%= button_to "confirm",action: "conformation", user_conformation_id: index.id, method: :post, :class => 'btn btn-primary'%>
