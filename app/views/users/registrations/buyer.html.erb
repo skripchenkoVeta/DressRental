@@ -35,7 +35,7 @@
   </div>
 
   <%= f.fields_for :buyer_infos do |builder| %>
-    <%= builder.hidden_field :freeze , value: 'true' %>
+    <%= builder.hidden_field :freeze , value: 'false' %>
     <div class="field">
       <%= builder.label :address %><br />
       <%= builder.text_field :address %>
