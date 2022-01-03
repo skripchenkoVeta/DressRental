@@ -8,14 +8,20 @@
         <th scope="col">Freeze</th>
       </tr>
     </thead>  
-    <% @user.each_with_index do |index| %>  
-      <%if index.role == 'Buyer'%>                
+    <% @user.each_with_index do |user| %>  
+      <%if user.role == 'Buyer'%>                
         <tr>
-          <td><%= index.name %></td>
-          <td><%= index.surname %></td>
-          <td><%= index.number %></td>
-          <td><%= index.email %></td>
-          <td><%= index.profileable.freeze %></td>
+          <td><%= user.name %></td>
+          <td><%= user.surname %></td>
+          <td><%= user.number %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%if user.profileable.freeze == false%>
+              <%= button_to "ban",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
+            <%else%>
+              <%= button_to "baned",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
+            <%end%>
+          <td>
         </tr>
       <%end%>
     <% end %>
@@ -33,24 +39,24 @@
         <th scope="col">Activity</th>
       </tr>
     </thead> 
-    <% @user.each_with_index do |index| %>  
-      <%if index.role == 'Seller'%>                   
+    <% @user.each_with_index do |user| %>  
+      <%if user.role == 'Seller'%>                   
        <tr>
-          <td><%= index.name %></td>
-          <td><%= index.surname %></td>
-          <td><%= index.number %></td>
-          <td><%= index.email %></td>
+          <td><%= user.name %></td>
+          <td><%= user.surname %></td>
+          <td><%= user.number %></td>
+          <td><%= user.email %></td>
           <td>
-          <%if index.profileable.freeze == false%>
-          <%= button_to "ban",action:"ban", user_ban_id: index.id, method: :post, :class => 'btn btn-primary'%></td>
-        <%else%>
-         <%= button_to "baned",action:"ban", user_ban_id: index.id, method: :post, :class => 'btn btn-primary'%></td>
-         <%end%>
+            <%if user.profileable.freeze == false%>
+              <%= button_to "ban",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
+            <%else%>
+              <%= button_to "baned",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
+            <%end%>
           <td>
-            <%if index.confirmed_at == nil%>
-              <%= button_to "confirm",action: "conformation", user_conformation_id: index.id, method: :post, :class => 'btn btn-primary'%>
+            <%if user.confirmed_at == nil%>
+              <%= button_to "confirm",action: "confirmation", user_confirmation_id: user.id, method: :post, :class => 'btn btn-primary'%>
             <% else %>
-              <%= index.confirmed_at %>
+              <%= user.confirmed_at %>
             <%end%>
           </td>
        </tr>

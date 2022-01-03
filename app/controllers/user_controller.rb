@@ -1,20 +1,22 @@
-class UserController < ApplicationController
-    def index
-        @user = User.all
-    end
+# frozen_string_literal: true
 
-    def conformation
-     User.find(params[:user_conformation_id]).update(confirmed_at: DateTime.now)
-        redirect_to user_index_path
+class UserController < ApplicationController
+  def index
+    @user = User.all
+  end
+
+  def confirmation
+    User.find(params[:user_confirmation_id]).update(confirmed_at: DateTime.now)
+    redirect_to user_index_path
+  end
+
+  def ban
+    user = User.find(params[:user_ban_id]).profileable
+    if user.freeze == true
+      user.update(freeze: false)
+    else
+      user.update(freeze: true)
     end
-    def ban
-        user = User.find(params[:user_ban_id]).profileable
-        if user.freeze == true
-            user.update(freeze: false)
-            redirect_to user_index_path
-        else
-            user.update(freeze: true)
-            redirect_to user_index_path
-        end
-    end
+    redirect_to user_index_path
+  end
 end

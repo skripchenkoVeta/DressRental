@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   resources :salons
   resources :product_types
   resources :user
-  post 'user/conformation' => "user#conformation"
+  post 'user/confirmation' => "user#confirmation"
   post 'user/ban' => "user#ban"
 end
