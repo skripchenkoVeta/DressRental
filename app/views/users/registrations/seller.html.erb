@@ -1,5 +1,4 @@
 <h2>Sign up</h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
   <%= f.hidden_field :profileable_type ,value: 'SellerInfo' %>
@@ -37,18 +36,22 @@
   <%= f.fields_for :seller_infos do |builder| %>
     <%= builder.hidden_field :freeze , value: 'false' %>
     <div class="field">
-      <%= builder.label :kpp %>
+      <%= builder.label :kpp %><br />
       <%= builder.text_field :kpp %>
     </div>
     <div class="field">
-      <%= builder.label :unp %>
+      <%= builder.label :unp %><br />
       <%= builder.text_field :unp %>
     </div>
       <div class="field">
-      <%= builder.label :supplier_name %>
+      <%= builder.label :supplier_name %><br />
       <%= builder.text_field :supplier_name %>
     </div>
-    <%= builder.collection_select :seller_type_id, SellerType.all, :id, :name  %>
+    <div class="field">
+      <%= builder.label 'form_organization' %><br />
+      <%= builder.collection_select :seller_type_id, SellerType.all, :id, :name  %>
+    </div>
+    
   <% end %>
   <div class="actions">
     <%= f.submit "Sign up" %>

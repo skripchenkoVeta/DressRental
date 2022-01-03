@@ -12,8 +12,9 @@
 #  updated_at     :datetime         not null
 #
 class Salon < ApplicationRecord
-  has_many :products
-  has_many :comments, as: :commentable
+  has_many :products,  dependent: :delete_all
+  has_many :comments, as: :commentable,  dependent: :delete_all
+  belongs_to :seller_info
 
   validates :name, :address, presence: true
 end

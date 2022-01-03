@@ -1,0 +1,24 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Salon</th>
+        <th scope="col">Product type</th>
+         <th scope="col">Edit</th>
+         <th scope="col">Destroy</th>
+      </tr>
+    </thead>  
+    <% @product.each_with_index do |index| %>       
+        <tr>
+          <td><%= index.name %></td>
+          <td><%= index.description %></td>
+          <td><%= index.price %></td>
+          <td><%= index.salon.name %></td>
+          <td><%= index.product_type_id %></td>
+          <td><%= link_to 'Edit', edit_product_path(index) %></td>
+          <td><%= link_to 'Destroy', product_path(index), method: :delete %></td>
+        </tr>
+    <% end %>
+  </table>

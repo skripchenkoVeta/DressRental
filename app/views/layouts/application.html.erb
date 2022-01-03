@@ -9,12 +9,27 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <nav class="navbar navbar-expand-md navbar-dark right menu">
+        <div class="navbar-nav">
+          <%= link_to 'Home', root_path, class: "nav-link item"%>
+            <% if user_signed_in? %>
+                <%= link_to 'Log out', destroy_user_session_path, :method => :delete , class: "nav-link item"%>
+                  <%if current_user.role == 'Admin'%>
+                    <%= link_to 'Users', user_index_path , class: "nav-link item"%>
+                    <%= link_to 'Salons',  salons_path , class: "nav-link item"%>
+                    <%= link_to 'Products', products_path , class: "nav-link item"%>
+                    <%= link_to 'Types',   product_types_path, class: "nav-link item"%>
+                  <%end%>
+            <% else %>
+                <%= link_to 'Log in', new_user_session_path ,class: "nav-link item"%>
+                <%= link_to 'Sign up seller', users_seller_path ,class: "nav-link item"%>
+                <%= link_to 'Sign up buyer', users_buyer_path ,class: "nav-link item"%>
+            <% end %>
+        </div>
+    </nav>
     <%= yield %>
-
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
   </body>
 </html>

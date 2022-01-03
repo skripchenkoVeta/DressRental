@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">address</th>
+        <th scope="col">Owner's name</th>
+        <th scope="col">Owner's surname</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Destroy</th>
+      </tr>
+    </thead>  
+    <% @salon.each_with_index do |index| %>       
+        <tr>
+          <td><%= index.name %></td>
+          <td><%= index.address %></td>
+          <td><%= index.seller_info.user.name %></td>
+          <td><%= index.seller_info.user.surname %></td>
+          <td><%= link_to 'Edit', edit_salon_path(index) %></td>
+          <td><%= link_to 'Destroy', salon_path(index), method: :delete %></td>
+        </tr>
+    <% end %>
+</table>

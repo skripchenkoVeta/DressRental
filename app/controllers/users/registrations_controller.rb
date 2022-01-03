@@ -5,9 +5,15 @@ module Users
     before_action :configure_sign_up_params, only: [:create]
     before_action :configure_account_update_params, only: [:update]
 
-    # GET /resource/sign_up
-
+    # GET /resource/buyer
     def buyer
+      build_resource
+      yield resource if block_given?
+      respond_with resource
+    end
+
+    # GET /resource/seller
+    def seller
       build_resource
       yield resource if block_given?
       respond_with resource
@@ -17,10 +23,10 @@ module Users
     def create
       if sign_up_params[:profileable_type] == 'SellerInfo'
         seller_info = SellerInfo.create(sign_up_seller_params)
-        user_sign_up_params = sign_up_params.merge(profileable_id: seller_info.id)
+        user_sign_up_params = sign_up_params.merge(profileable_id: seller_info.id).except(:seller_infos)
       else
         buyer_info = BuyerInfo.create(sign_up_buyer_params)
-        user_sign_up_params = sign_up_params.merge(profileable_id: buyer_info.id)
+        user_sign_up_params = sign_up_params.merge(profileable_id: buyer_info.id).except(:buyer_infos)
       end
       build_resource(user_sign_up_params)
       resource.save
@@ -38,7 +44,12 @@ module Users
       else
         clean_up_passwords resource
         set_minimum_password_length
-        respond_with resource
+        resource.errors.full_messages.each { |x| flash[:notice] = x }
+        if user_sign_up_params[:role] == 'Seller'
+          redirect_to users_seller_path
+        else
+          redirect_to users_buyer_path
+        end
       end
     end
 
@@ -58,29 +69,26 @@ module Users
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up,
-                                        keys: %i[attribute name number surname role profileable_type profileable_id])
+      param_keys = [:attribute, :name, :number, :surname, :role, :profileable_type, :profileable_id,
+                    { seller_infos: sign_up_seller_keys, buyer_infos: sign_up_buyer_keys }]
+
+      devise_parameter_sanitizer.permit(:sign_up, keys: param_keys)
+    end
+
+    def sign_up_seller_keys
+      %i[kpp unp supplier_name seller_type_id freeze]
     end
 
     def sign_up_seller_params
-      params.require(:user).require(:seller_infos).permit(:kpp, :unp, :supplier_name, :seller_type_id, :freeze)
+      params.require(:user).require(:seller_infos).permit(sign_up_seller_keys)
+    end
+
+    def sign_up_buyer_keys
+      %i[address birthday freeze]
     end
 
     def sign_up_buyer_params
-      params.require(:user).require(:buyer_infos).permit(:address, :birthday, :freeze)
+      params.require(:user).require(:buyer_infos).permit(sign_up_buyer_keys)
     end
-
-    def death
-      sign_up_params.require(:user).require(:seller_infos).permit(:kpp, :unp, :supplier_name, :seller_type_id, :freeze)
-    end
-
-    # If you have extra params to permit, append them to the sanitizer.
-    def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-    end
-
-    # The path used after sign up.
-
-    # The path used after sign up for inactive accounts.
   end
 end

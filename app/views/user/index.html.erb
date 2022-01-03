@@ -1,0 +1,66 @@
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Freeze</th>
+      </tr>
+    </thead>  
+    <% @user.each_with_index do |user| %>  
+      <%if user.role == 'Buyer'%>                
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.surname %></td>
+          <td><%= user.number %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%if user.profileable.freeze == false%>
+              <%= button_to "ban",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
+            <%else%>
+              <%= button_to "baned",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
+            <%end%>
+          <td>
+        </tr>
+      <%end%>
+    <% end %>
+  </table>
+  <br/>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Freeze</th>
+        <th scope="col">Activity</th>
+      </tr>
+    </thead> 
+    <% @user.each_with_index do |user| %>  
+      <%if user.role == 'Seller'%>                   
+       <tr>
+          <td><%= user.name %></td>
+          <td><%= user.surname %></td>
+          <td><%= user.number %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%if user.profileable.freeze == false%>
+              <%= button_to "ban",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
+            <%else%>
+              <%= button_to "baned",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
+            <%end%>
+          <td>
+            <%if user.confirmed_at == nil%>
+              <%= button_to "confirm",action: "confirmation", user_confirmation_id: user.id, method: :post, :class => 'btn btn-primary'%>
+            <% else %>
+              <%= user.confirmed_at %>
+            <%end%>
+          </td>
+       </tr>
+      <%end%>
+     <% end %>
+  </table>
+  
