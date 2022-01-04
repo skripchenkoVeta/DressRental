@@ -1,7 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-7">
+    <%if current_user.role == 'Admin'%>
       <%= link_to 'Back', products_path, class: 'btn btn-primary' %></td>
+    <%else%>
+      <%= link_to 'Back', product_menu_path, class: 'btn btn-primary' %></td>
+    <%end%>
       <%= form_for @product do |f| %>
         <div class="field">
           <%= f.label :name %><br/>
@@ -16,6 +20,7 @@
           <%= f.text_field :price, required: true, class: "form-control" %>
         </div>
          <%= f.collection_select :product_type_id, ProductType.all, :id, :name  %>
+         <%= f.collection_select :salon_id, current_user.profileable.salons, :id, :name  %>
         <div class="actions">
           <%= f.submit 'Save', class:"btn btn-primary" %>
         </div>

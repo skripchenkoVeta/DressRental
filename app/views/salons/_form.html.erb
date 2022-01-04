@@ -1,8 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-7">
+    <%if current_user.role == 'Admin'%>
       <%= link_to 'Back', salons_path, class: 'btn btn-primary' %></td>
+    <%else%>
+      <%= link_to 'Back', salon_menu_path, class: 'btn btn-primary' %></td>
+    <%end%>
       <%= form_for @salon do |f| %>
+      <%= f.hidden_field :seller_info_id , value: current_user.profileable_id %>
         <div class="field">
           <%= f.label :name %><br/>
           <%= f.text_field :name, required: true, class: "form-control" %>
@@ -19,3 +24,4 @@
     <div class="col"></div>
   </div>
 </div>
+
