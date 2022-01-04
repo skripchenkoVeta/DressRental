@@ -1,10 +1,10 @@
 class SalonsController < ApplicationController
   def index
-    @salon = Salon.all
+    @salons = Salon.all
   end
 
   def menu
-    @seller = current_user.profileable.salons
+    @salons = current_user.profileable.salons
   end
 
   def new

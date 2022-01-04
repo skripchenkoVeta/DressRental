@@ -9,14 +9,14 @@
         <th scope="col">Destroy</th>
       </tr>
     </thead>  
-    <% @salon.each_with_index do |index| %>       
+    <% @salons.each_with_index do |salon| %>       
         <tr>
-          <td><%= index.name %></td>
-          <td><%= index.address %></td>
-          <td><%= index.seller_info.user.name %></td>
-          <td><%= index.seller_info.user.surname %></td>
-          <td><%= link_to 'Edit', edit_salon_path(index) %></td>
-          <td><%= link_to 'Destroy', salon_path(index), method: :delete %></td>
+          <td><%= salon.name %></td>
+          <td><%= salon.address %></td>
+          <td><%= salon.seller_info.user.name %></td>
+          <td><%= salon.seller_info.user.surname %></td>
+          <td><%= link_to 'Edit', edit_salon_path(salon) %></td>
+          <td><%= link_to 'Destroy', salon_path(salon), method: :delete %></td>
         </tr>
     <% end %>
 </table>

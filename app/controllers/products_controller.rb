@@ -1,11 +1,11 @@
 class ProductsController < ApplicationController
   def index
-    @product = Product.all
+    @products = Product.all
   end
 
   def menu
-    @seller = current_user.profileable.salons
-    @products = Product.where(salon_id: @seller)
+    @salon = current_user.profileable.salons
+    @products = Product.where(salon_id: @salon)
   end
 
   def show
