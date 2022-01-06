@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
+  NUMBER_ITEMS_PER_PAGE = 19
   def index
-    @products = Product.all.page(params[:page]).per(19)
+    @products = Product.all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
   end
 
   def menu
-    @salon = current_user.profileable.salons
-    @products = Product.where(salon_id: @salon)
+    @list_salons = current_user.profileable.salons
+    @products = Product.where(salon_id: @list_salons)
   end
 
   def show
@@ -20,9 +21,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(product_params)
-
-    binding.pry
-
     if @product
       flash[:success] = 'Success'
       redirect_to product_menu_path(@product)

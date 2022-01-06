@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class UserController < ApplicationController
+  NUMBER_ITEMS_PER_PAGE = 19
   def index
-    @user = User.all.page(params[:page]).per(19)
+    @user = User.all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
   end
 
   def confirmation
