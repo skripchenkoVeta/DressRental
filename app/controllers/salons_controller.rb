@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class SalonsController < ApplicationController
   def index
-    @salons = Salon.all
+    @salons = Salon.all.page(params[:page]).per(19)
   end
 
   def menu
@@ -25,6 +27,12 @@ class SalonsController < ApplicationController
   def show
     @salon = Salon.find(params[:id])
     @products = Product.where(salon_id: @salon)
+
+    if params[:search]
+      search = params[:search]
+      @products = @products.where('name like ?', "%#{search}%")
+    end
+    @products = @products.page params[:page]
   end
 
   def edit

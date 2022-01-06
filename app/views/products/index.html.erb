@@ -1,17 +1,5 @@
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Salon</th>
-        <th scope="col">Product type</th>
-         <th scope="col">Edit</th>
-         <th scope="col">Destroy</th>
-      </tr>
-    </thead>  
-    <% @products.each_with_index do |index| %>       
-        <tr>
+<table class="table table-striped"" style=" margin-top:50px
+    <% @products.each_with_index do |index| %>>
           <td><%= index.name %></td>
           <td><%= index.description %></td>
           <td><%= index.price %></td>
@@ -22,3 +10,9 @@
         </tr>
     <% end %>
   </table>
+   <div class="container col-md-5">
+    <%= paginate @products,
+              theme: 'bootstrap-5',
+              pagination_class: "pagination flex-wrap justify-content-center",
+              nav_class: "d-inline-block" %>
+  </div>

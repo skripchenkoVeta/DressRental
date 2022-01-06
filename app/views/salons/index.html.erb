@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-striped" style="margin-top:50px;">
     <thead>
       <tr>
         <th scope="col">Name</th>
@@ -7,9 +7,10 @@
         <th scope="col">Owner's surname</th>
         <th scope="col">Edit</th>
         <th scope="col">Destroy</th>
+        <th scope="col">Show</th>
       </tr>
-    </thead>  
-    <% @salons.each_with_index do |salon| %>       
+    </thead>
+    <% @salons.each_with_index do |salon| %>
         <tr>
           <td><%= salon.name %></td>
           <td><%= salon.address %></td>
@@ -17,6 +18,13 @@
           <td><%= salon.seller_info.user.surname %></td>
           <td><%= link_to 'Edit', edit_salon_path(salon) %></td>
           <td><%= link_to 'Destroy', salon_path(salon), method: :delete %></td>
+          <td><%= link_to 'Show', salon_path(salon) %></td>
         </tr>
     <% end %>
 </table>
+ <div class="container col-md-5">
+    <%= paginate @salons,
+              theme: 'bootstrap-5',
+              pagination_class: "pagination flex-wrap justify-content-center",
+              nav_class: "d-inline-block" %>
+  </div>

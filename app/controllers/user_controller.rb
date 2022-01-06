@@ -2,7 +2,7 @@
 
 class UserController < ApplicationController
   def index
-    @user = User.all
+    @user = User.all.page(params[:page]).per(19)
   end
 
   def confirmation

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.all.page(params[:page]).per(19)
   end
 
   def menu
