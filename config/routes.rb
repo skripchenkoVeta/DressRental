@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   get '/menu' => "seller_profile#menu"
   get 'salon/menu' => "salons#menu"
   get 'product/menu' => "products#menu"
+  get 'home/catalog' => "home#catalog"
 end

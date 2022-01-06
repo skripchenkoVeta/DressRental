@@ -1,5 +1,11 @@
-<% if user_signed_in? %>
-    <h1>Welcome <%= current_user.name %></h1>
-<%else%>
-    <h1>':)'</h1>
-<%end%>
+ <header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <h1 class="mx-auto my-0 text-uppercase">Dress Rental</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Luxury must be comfortable, otherwise it is not luxury.</h2>
+                         <%= link_to 'Catalog', home_catalog_path, class:"border-button" %>
+                    </div>
+                </div>
+            </div>
+        </header>
