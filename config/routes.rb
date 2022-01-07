@@ -20,4 +20,8 @@ Rails.application.routes.draw do
   resources :user
   post 'user/confirmation' => "user#confirmation"
   post 'user/ban' => "user#ban"
+  get '/menu' => "seller_profile#menu"
+  get 'salon/menu' => "salons#menu"
+  get 'product/menu' => "products#menu"
+  get 'home/catalog' => "home#catalog"
 end

@@ -1,11 +1,11 @@
-<%if @role == 'Seller' %>
-    <p>Welcome <%= @email%>!</p>
+<% if @role == 'Seller' %>
+    <p>Welcome <%= @email %>!</p>
 
     <p>Your regestration request is accepted! Soon you will receive an email with your registration confirmation</p>
-<%else%>
+<% else %>
     <p>Welcome <%= @email %>!</p>
 
     <p>You are successfully registered in DressRental service, please follow link to access your Dashboard:</p>
 
     <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
-<%end%>
+<% end %>

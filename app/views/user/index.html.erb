@@ -1,4 +1,4 @@
-  <table class="table">
+  <table class="table table-striped" style="margin-top:50px;">
     <thead>
       <tr>
         <th scope="col">Name</th>
@@ -7,28 +7,28 @@
         <th scope="col">Email</th>
         <th scope="col">Freeze</th>
       </tr>
-    </thead>  
-    <% @user.each_with_index do |user| %>  
-      <%if user.role == 'Buyer'%>                
+    </thead>
+    <% @user.each_with_index do |user| %>
+      <% if user.role == 'Buyer' %>
         <tr>
           <td><%= user.name %></td>
           <td><%= user.surname %></td>
           <td><%= user.number %></td>
           <td><%= user.email %></td>
           <td>
-            <%if user.profileable.freeze == false%>
-              <%= button_to "ban",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
-            <%else%>
-              <%= button_to "baned",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
-            <%end%>
+            <% if user.profileable.freeze == false %>
+              <%= button_to "ban",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary' %></td>
+            <% else %>
+              <%= button_to "baned",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary' %></td>
+            <% end %>
           <td>
         </tr>
-      <%end%>
+      <% end %>
     <% end %>
   </table>
-  <br/>
+  <br>
 
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Name</th>
@@ -38,29 +38,34 @@
         <th scope="col">Freeze</th>
         <th scope="col">Activity</th>
       </tr>
-    </thead> 
-    <% @user.each_with_index do |user| %>  
-      <%if user.role == 'Seller'%>                   
+    </thead>
+    <% @user.each_with_index do |user| %>
+      <% if user.role == 'Seller' %>
        <tr>
           <td><%= user.name %></td>
           <td><%= user.surname %></td>
           <td><%= user.number %></td>
           <td><%= user.email %></td>
           <td>
-            <%if user.profileable.freeze == false%>
-              <%= button_to "ban",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
-            <%else%>
-              <%= button_to "baned",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary'%></td>
-            <%end%>
+            <% if user.profileable.freeze == false %>
+              <%= button_to "ban",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary' %></td>
+            <% else %>
+              <%= button_to "baned",action:"ban", user_ban_id: user.id, method: :post, :class => 'btn btn-primary' %></td>
+            <% end %>
           <td>
-            <%if user.confirmed_at == nil%>
-              <%= button_to "confirm",action: "confirmation", user_confirmation_id: user.id, method: :post, :class => 'btn btn-primary'%>
+            <% if user.confirmed_at == nil %>
+              <%= button_to "confirm",action: "confirmation", user_confirmation_id: user.id, method: :post, :class => 'btn btn-primary' %>
             <% else %>
               <%= user.confirmed_at %>
-            <%end%>
+            <% end %>
           </td>
        </tr>
-      <%end%>
+      <% end %>
      <% end %>
   </table>
-  
+   <div class="container col-md-5">
+    <%= paginate @user,
+              theme: 'bootstrap-5',
+              pagination_class: "pagination flex-wrap justify-content-center",
+              nav_class: "d-inline-block" %>
+  </div>
