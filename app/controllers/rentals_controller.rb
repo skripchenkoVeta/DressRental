@@ -3,11 +3,25 @@ class RentalsController < ApplicationController
   # GET /rentals or /rentals.json
   def index
     if current_user[:role] == 'Buyer'
-    @rentals = Rental.where(buyer_info_id: current_user.profileable)
+      @rentals =
+    if params[:finished]
+       Rental.where(buyer_info_id: current_user.profileable,status: false,approve: true)
+    elsif params[:rental]
+      Rental.where(buyer_info_id: current_user.profileable,status: true,approve: true)
+    else
+      Rental.where(buyer_info_id: current_user.profileable)
+    end
     else
       @list_salons = current_user.profileable.salons
     @list_products = Product.where(salon_id: @list_salons)
-    @rentals = Rental.where(product_id: @list_products)
+    @rentals = 
+    if params[:finished]
+       Rental.where(product_id: @list_products,status: false,approve: true)
+    elsif params[:rental]
+      Rental.where(product_id: @list_products,status: true,approve: true)
+    else
+      Rental.where(product_id: @list_products)
+    end
     end
   end
 
@@ -20,12 +34,20 @@ class RentalsController < ApplicationController
     @rental = Rental.new
     @product = Product.find(params[:format])
   end
+
+  def status
+    rent = Rental.find(params[:status_id])
+    rent.update(status: false)
+    redirect_to rentals_path
+  end
+
   def approve
     rent = Rental.find(params[:approve_id])
     rent.update(approve: true,status: true)
     UserMailer.with(user: rent).approved.deliver_now
     redirect_to rentals_path
   end
+
   # GET /rentals/1/edit
   def edit
   end

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post 'user/confirmation' => "user#confirmation"
   post 'user/ban' => "user#ban"
   post 'rentals/approve' => "rentals#approve"
+  post 'rentals/status' => "rentals#status"
   get '/menu' => "seller_profile#menu"
   get 'salon/menu' => "salons#menu"
   get 'product/menu' => "products#menu"
