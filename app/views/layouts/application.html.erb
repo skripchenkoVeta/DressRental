@@ -24,6 +24,8 @@
                             <li class="nav-item"><%= link_to 'Types',   product_types_path, class: "nav-link" %></li>
                           <% elsif current_user.role == 'Seller' %>
                             <li class="nav-item"><%= link_to 'Profile', menu_path , class: "nav-link" %></li>
+                            <%else%>
+                            <li class="nav-item"><%= link_to 'Rental', rentals_path , class: "nav-link" %></li>
                           <% end %>
                       <% else %>
                         <li class="nav-item"><%= link_to 'Log in', new_user_session_path ,class: "nav-link" %></li>

@@ -2,6 +2,7 @@
 
 class ProductsController < ApplicationController
   NUMBER_ITEMS_PER_PAGE = 19
+  
   def index
     @products = Product.all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
   end
@@ -68,6 +69,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :product_type_id, :salon_id)
+    params.require(:product).permit(:name, :description, :price, :product_type_id, :salon_id,:avatar)
   end
 end

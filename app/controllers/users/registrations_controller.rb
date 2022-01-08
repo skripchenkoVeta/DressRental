@@ -76,7 +76,7 @@ module Users
     end
 
     def sign_up_seller_keys
-      %i[kpp unp supplier_name seller_type_id freeze]
+      %i[kpp unp supplier_name seller_type_id freeze avatar]
     end
 
     def sign_up_seller_params
@@ -84,7 +84,7 @@ module Users
     end
 
     def sign_up_buyer_keys
-      %i[address birthday freeze]
+      %i[address birthday freeze avatar]
     end
 
     def sign_up_buyer_params

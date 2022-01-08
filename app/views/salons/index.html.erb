@@ -5,6 +5,7 @@
         <th scope="col">address</th>
         <th scope="col">Owner's name</th>
         <th scope="col">Owner's surname</th>
+        <th scope="col">Photo</th>
         <th scope="col">Edit</th>
         <th scope="col">Destroy</th>
         <th scope="col">Show</th>
@@ -16,6 +17,7 @@
           <td><%= salon.address %></td>
           <td><%= salon.seller_info.user.name %></td>
           <td><%= salon.seller_info.user.surname %></td>
+          <td><%= image_tag salon.picture,class:"card-img-top" if salon.picture.attached?%></td>
           <td><%= link_to 'Edit', edit_salon_path(salon) %></td>
           <td><%= link_to 'Destroy', salon_path(salon), method: :delete %></td>
           <td><%= link_to 'Show', salon_path(salon) %></td>
