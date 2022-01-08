@@ -14,7 +14,7 @@
 #  updated_at      :datetime         not null
 #
 class Product < ApplicationRecord
-  has_one :product_type
+  belongs_to :product_type
   belongs_to :salon
   has_many :comments, as: :commentable
   has_many :rentals
@@ -23,4 +23,8 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :price, numericality: { greater_than: 0 }, presence: true
   validates :description, length: { minimum: 15 }, presence: true
+
+  def product_type_name
+    self.product_type&.name.present? ? self.product_type.name : 'None'
+  end
 end
