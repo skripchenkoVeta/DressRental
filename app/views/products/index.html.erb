@@ -18,7 +18,7 @@
           <td><%= index.price %></td>
           <td><%= index.salon.name %></td>
           <td><%= image_tag index.avatar,class:"card-img-top" if index.avatar.attached?%></td>
-          <td><%= index.product_type_id %></td>
+          <td><%= index.product_type_name %></td>
           <td><%= link_to 'Edit', edit_product_path(index) %></td>
           <td><%= link_to 'Destroy', product_path(index), method: :delete %></td>
         </tr>

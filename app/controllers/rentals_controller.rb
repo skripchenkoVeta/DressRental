@@ -22,8 +22,8 @@ class RentalsController < ApplicationController
   end
   def approve
     rent = Rental.find(params[:approve_id])
-    rent.update(approve: true)
-    rent.update(status: true)
+    rent.update(approve: true,status: true)
+    UserMailer.with(user: rent).approved.deliver_now
     redirect_to rentals_path
   end
   # GET /rentals/1/edit
@@ -35,6 +35,7 @@ class RentalsController < ApplicationController
     @rental = Rental.new(rental_params)
 
       if @rental.save
+        UserMailer.with(user: @rental).create_of_rental.deliver_now
         flash[:success] = 'Success'
         redirect_to home_catalog_path
       else
@@ -59,10 +60,11 @@ class RentalsController < ApplicationController
 
   # DELETE /rentals/1 or /rentals/1.json
   def destroy
-    @rental.destroy
+    @rental = Rental.find(params[:id])
     if @rental.destroy
+      UserMailer.with(user: @rental).rejected.deliver_now
       flash[:success] = 'Success'
-      redirect_to home_catalog_path
+      redirect_to rentals_path
     else
       flash[:error] = 'Error'
     end

@@ -2,9 +2,9 @@
 
 class ProductsController < ApplicationController
   NUMBER_ITEMS_PER_PAGE = 19
-  
+
   def index
-    @products = Product.all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+    @products = Product.includes(:salon).includes(:product_type).includes(:avatar_attachment).all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
   end
 
   def menu

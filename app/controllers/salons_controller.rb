@@ -3,7 +3,7 @@
 class SalonsController < ApplicationController
   NUMBER_ITEMS_PER_PAGE = 19
   def index
-    @salons = Salon.all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+    @salons = Salon.includes(:seller_info).includes(:picture_attachment).all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
   end
 
   def menu

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi, <%= @user.product.salon.seller_info.user.name %> <%= @user.product.salon.seller_info.user.surname %></h1>
+    <p>
+      <%= @user.buyer_info.user.name %> <%= @user.buyer_info.user.surname %> has asked you to rent "<%= @user.product.name %>" product, which belongs to the "<%= @user.product.salon.name %>" salon.  </p>
+    <p>
+      The rental starts on <%= @user.start_rent %> and lasts until <%= @user.end_rent %>.
+    </p>
+    <p>Log in to your personal account to confirm the lease!</p>
+  </body>
+</html>
