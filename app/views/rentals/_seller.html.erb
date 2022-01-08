@@ -1,0 +1,38 @@
+<div class="row" style="margin:100px 0px 0px 80px;">
+    <%= render 'seller_profile/listmenu' %>
+    <div class="col-8">
+<table class="table table-striped" style="margin-top:50px;">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Product</th>
+        <th scope="col">Salon</th>
+        <th scope="col">Price</th>
+        <th scope="col">Start rental</th>
+        <th scope="col">End rental</th>
+        <th scope="col">Status</th>
+        <th scope="col">Approve</th>
+      </tr>
+    </thead>  
+    <% @rentals.each_with_index do |index| %>       
+        <tr>
+            <td><%= index.buyer_info.user.name %></td>
+        <td><%= index.buyer_info.user.surname %></td>
+          <td><%= index.product.name %></td>
+          <td><%= index.product.salon.name %></td>
+          <td><%= index.product.price %></td>
+          <td><%= index.start_rent %></td>
+          <td><%= index.end_rent %></td>
+          <td><%= index.status %></td>
+          <td><% if index.approve == false %>
+              <%= button_to "Approve",action:"approve", approve_id: index.id, method: :post, :class => 'btn btn-primary' %></td>
+            <% else %>
+            <td>Active</td>
+               <% end %>
+        </tr>
+    <% end %>
+  </table>
+  </div>
+  </div>
+

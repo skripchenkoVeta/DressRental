@@ -1,0 +1,6 @@
+<%if current_user.role == 'Seller'%>
+<%= render 'seller' %>
+<%else%>
+<%= render 'buyer' %>
+<%end%>
+

@@ -1,0 +1,24 @@
+
+<table class="table table-striped" style="margin-top:50px;">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Salon</th>
+        <th scope="col">Price</th>
+        <th scope="col">Start rental</th>
+        <th scope="col">End rental</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>  
+    <% @rentals.each_with_index do |index| %>       
+        <tr>
+          <td><%= index.product.name %></td>
+          <td><%= index.product.salon.name %></td>
+          <td><%= index.product.price %></td>
+          <td><%= index.start_rent %></td>
+          <td><%= index.end_rent %></td>
+          <td><%= index.status %></td>
+        </tr>
+    <% end %>
+  </table>
+

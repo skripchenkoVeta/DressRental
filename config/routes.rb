@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :rentals
   devise_for :users, controllers: 
   {
     registrations: 'users/registrations',
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   resources :user
   post 'user/confirmation' => "user#confirmation"
   post 'user/ban' => "user#ban"
+  post 'rentals/approve' => "rentals#approve"
   get '/menu' => "seller_profile#menu"
   get 'salon/menu' => "salons#menu"
   get 'product/menu' => "products#menu"

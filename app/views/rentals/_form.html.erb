@@ -1,0 +1,29 @@
+<div class="container" style="margin-top:60px;">
+  <div class="row">
+    <div class="col-md-7">
+     <%= form_for @rental do |f| %>
+       <%= f.hidden_field :status , value: 'false' %>
+       <%= f.hidden_field :approve , value: 'false' %>
+      <%= f.hidden_field :buyer_info_id, value: current_user.profileable.id %>
+      <%= f.hidden_field :product_id , value: @product.id %>
+          <div class="field">
+          <%= @product.salon.name %><br>
+          <%= @product.name %><br>
+          <%= @product.price %>
+        </div>
+        <div class="field">
+          <%= f.label :start_rent %><br>
+          <%= f.text_field :start_rent, required: true, class: "form-control" %>
+        </div>
+            <div class="field">
+          <%= f.label :end_rent %><br>
+          <%= f.text_field :end_rent , required: true, class: "form-control" %>
+        </div>
+        <div class="actions">
+          <%= f.submit 'Save', class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
