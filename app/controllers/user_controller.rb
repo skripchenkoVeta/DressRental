@@ -3,7 +3,17 @@
 class UserController < ApplicationController
   NUMBER_ITEMS_PER_PAGE = 19
   def index
-    @user = User.includes(:profileable).all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+    @user =
+      if params[:buyer]
+        User.where(role: 'Buyer')
+      elsif params[:seller]
+        User.where(role: 'Seller')
+      elsif params[:seller_not_activity]
+        User.where(role: 'Seller', confirmed_at: nil)
+      else
+        User.all
+      end
+    @user = @user.includes(:profileable).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
   end
 
   def confirmation

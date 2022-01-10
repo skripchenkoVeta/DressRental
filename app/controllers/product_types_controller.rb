@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ProductTypesController < ApplicationController
-    def index
-        @product_type = ProductType.all
-    end
+  def index
+    @product_type = ProductType.all
+  end
 
   def new
     @product_type = ProductType.new
@@ -54,5 +56,4 @@ class ProductTypesController < ApplicationController
   def product_type_params
     params.require(:product_type).permit(:name)
   end
-
 end
