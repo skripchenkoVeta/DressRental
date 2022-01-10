@@ -13,7 +13,7 @@ class ProductTypesController < ApplicationController
     @product_type = ProductType.create(product_type_params)
     if @product_type
       flash[:success] = 'Success'
-      redirect_to product_types_path(@product_type)
+      redirect_to product_types_path
     else
       flash[:error] = 'Error'
       render :new
