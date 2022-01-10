@@ -54,8 +54,6 @@ class RentalsController < ApplicationController
 
   # POST /rentals or /rentals.json
   def create
-    binding.pry
-
     @rental = Rental.new(rental_params)
 
     if @rental.save
