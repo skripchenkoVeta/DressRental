@@ -1,5 +1,5 @@
 
-<section class="h-100 gradient-form" style="margin-top:70px;">
+<section class="h-100 gradient-form">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
@@ -50,7 +50,7 @@
     <%= builder.hidden_field :freeze , value: 'false' %>
     <div class="field form-outline mb-4">
       <%= builder.label :birthday %><br>
-      <%= builder.text_field :birthday,class:"form-control" %>
+      <%= builder.date_select :birthday , order: [:month, :day, :year] ,start_year: 1900, end_year: Time.now.year, class: "form-control" %>
     </div>
     <div class="field form-outline mb-4">
       <%= builder.label :address %><br>

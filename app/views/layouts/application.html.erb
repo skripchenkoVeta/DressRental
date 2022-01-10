@@ -15,27 +15,40 @@
                 <%= link_to 'Dress Rental', root_path ,class: "navbar-brand" %>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-auto">
+                     <% I18n.available_locales.each do |locale| %>
+                      <li>
+                         <% if I18n.locale == locale %>
+                          <%= tag.span t(locale), class: 'nav-link' %>
+                        <% else %>
+                          <%= link_to t(locale), root_path(locale: locale),class: 'nav-link' %>
+                        <% end %>
+                      </li>
+                        <% end %>
                       <% if user_signed_in? %>
-                        <li class="nav-item"><%= link_to 'Log out', destroy_user_session_path, :method => :delete , class: "nav-link" %></li>
+                        <li class="nav-item"><%= link_to t('menu.log_out'), destroy_user_session_path, :method => :delete , class: "nav-link" %></li>
                           <% if current_user.role == 'Admin' %>
-                            <li class="nav-item"><%= link_to 'Users', user_index_path , class: "nav-link" %></li>
-                            <li class="nav-item"><%= link_to 'Salons',  salons_path , class: "nav-link" %></li>
-                            <li class="nav-item"><%= link_to 'Products', products_path , class: "nav-link" %></li>
-                            <li class="nav-item"><%= link_to 'Types',   product_types_path, class: "nav-link" %></li>
+                            <li class="nav-item"><%= link_to t('menu.users'), user_index_path , class: "nav-link" %></li>
+                            <li class="nav-item"><%= link_to t('menu.salons'),  salons_path , class: "nav-link" %></li>
+                            <li class="nav-item"><%= link_to t('menu.products'), products_path , class: "nav-link" %></li>
+                            <li class="nav-item"><%= link_to t('menu.products_type'),   product_types_path, class: "nav-link" %></li>
                           <% elsif current_user.role == 'Seller' %>
-                            <li class="nav-item"><%= link_to 'Profile', menu_path , class: "nav-link" %></li>
+                            <li class="nav-item"><%= link_to t('menu.profile'), product_menu_path , class: "nav-link" %></li>
+                            <% else %>
+                            <li class="nav-item"><%= link_to t('menu.rental'), rentals_path , class: "nav-link" %></li>
                           <% end %>
                       <% else %>
-                        <li class="nav-item"><%= link_to 'Log in', new_user_session_path ,class: "nav-link" %></li>
-                        <li class="nav-item"><%= link_to 'Sign up seller', users_seller_path ,class: "nav-link" %></li>
-                        <li class="nav-item"><%= link_to 'Sign up buyer', users_buyer_path ,class: "nav-link" %></li>
+                        <li class="nav-item"><%= link_to t('menu.login'), new_user_session_path ,class: "nav-link" %></li>
+                        <li class="nav-item"><%= link_to t('menu.sign_up_seller'), users_seller_path ,class: "nav-link" %></li>
+                        <li class="nav-item"><%= link_to t('menu.sign_up_buyer'), users_buyer_path ,class: "nav-link" %></li>
                       <% end %>
                     </ul>
                 </div>
             </div>
     </nav>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Dress Rental</div></footer>
+
      </body>
 </html>

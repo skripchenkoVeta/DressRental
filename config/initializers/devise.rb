@@ -80,7 +80,7 @@ Devise.setup do |config|
   # The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
   # config.http_authenticatable = false
-
+  config.omniauth :github, '5085cf813b2a5d4fc812', '441c97d87828372a8ed707abe12f50a5b38580f5', scope: 'user:email'
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
 

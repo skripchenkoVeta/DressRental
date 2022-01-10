@@ -7,7 +7,7 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.text :description
       t.float :price
       t.references :salon
-      t.references :product_type
+      t.references :product_type, on_delete: :nullify
       
       t.timestamps
     end

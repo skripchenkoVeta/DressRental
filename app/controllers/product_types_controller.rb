@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ProductTypesController < ApplicationController
-    def index
-        @product_type = ProductType.all
-    end
+  def index
+    @product_type = ProductType.all
+  end
 
   def new
     @product_type = ProductType.new
@@ -11,7 +13,7 @@ class ProductTypesController < ApplicationController
     @product_type = ProductType.create(product_type_params)
     if @product_type
       flash[:success] = 'Success'
-      redirect_to product_types_path(@product_type)
+      redirect_to product_types_path
     else
       flash[:error] = 'Error'
       render :new
@@ -54,5 +56,4 @@ class ProductTypesController < ApplicationController
   def product_type_params
     params.require(:product_type).permit(:name)
   end
-
 end

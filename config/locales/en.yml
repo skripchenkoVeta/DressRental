@@ -1,33 +1,22 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  menu:
+    log_out: "Log out"
+    rental: "Rental"
+    login: "Log in"
+    sign_up_seller: "Sign up as seller"
+    sign_up_buyer: "Sign up as buyer"
+    profile: "Profile"
+    users: "Users"
+    salons: "Salons"
+    products: "Products"
+    products_type: "Product types"
+  main_page:
+    quote: "Luxury must be comfortable, otherwise it is not luxury."
+    catalog: "Catalog"
+    title_1: "Fashion"
+    text_1: "Fashion is not necessarily about labels. It’s not about brands. It’s about something else that comes from within you"
+    title_2: "Be yourself"
+    text_2: "Don't be too zealous when choosing clothes: the most stylish people look like they don't put any effort into their own appearance. Ultimately, style comes down to self-expression, and I don't think anything can look really terrible on a person who is sincere with himself."
+    title_3: "Be happy"
+    text_3: "Fashion doesn't just make people beautiful, it makes them happy."
+

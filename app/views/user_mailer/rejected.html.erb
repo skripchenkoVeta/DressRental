@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+  </head>
+  <body>
+    <h1>Hi, <%= @user.buyer_info.user.name %> <%= @user.buyer_info.user.surname %> </h1>
+    <p>
+    Your application for renting "<%= @user.product.name %>" from the salon "<%= @user.product.salon.name %>" has been rejected!
+ </p>
+  </body>
+</html>

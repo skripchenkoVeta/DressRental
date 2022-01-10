@@ -3,9 +3,50 @@
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase">Dress Rental</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Luxury must be comfortable, otherwise it is not luxury.</h2>
-                         <%= link_to 'Catalog', home_catalog_path, class:"border-button" %>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5"><%= t('main_page.quote') %></h2>
+                         <%= link_to t('main_page.catalog'), home_catalog_path, class:"border-button" %>
                     </div>
                 </div>
             </div>
         </header>
+        <section class="projects-section bg-light" id="projects">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="https://savageuniversal.com/wp-content/uploads/2013/08/man20in20suit20in20field.jpg"></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4><%= t('main_page.title_1') %></h4>
+                            <p class="text-black-50 mb-0"><%= t('main_page.text_1') %></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                    <div class="col-lg-6"><img class="img-fluid" src="https://www.muddycolors.com/wp-content/uploads/2017/12/0b6d2-leibovitz6.jpg" alt="..."></div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h4 class="text-white"><%= t('main_page.title_2') %></h4>
+                                    <p class="mb-0 text-white-50"><%= t('main_page.text_2') %></p>
+                                    <hr class="d-none d-lg-block mb-0 ms-0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-6"><img class="img-fluid" src="https://assets.vogue.com/photos/5910cdf2820d3b5f88863471/master/w_1804,h_1221,c_limit/01-elle-fanning-vogue-june-2017.jpg" alt="..."></div>
+                    <div class="col-lg-6 order-lg-first">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-right">
+                                    <h4 class="text-white"><%= t('main_page.title_3') %></h4>
+                                    <p class="mb-0 text-white-50"><%= t('main_page.text_3') %></p>
+                                    <hr class="d-none d-lg-block mb-0 me-0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

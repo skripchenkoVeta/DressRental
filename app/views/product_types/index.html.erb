@@ -8,14 +8,15 @@
         <th scope="col">Destroy</th>
       </tr>
     </thead>
-    <tbody class="table table-striped">
+    <tbody>
       <% @product_type.each_with_index do |index| %>
         <tr>
           <td><%= index.name %></td>
-          <td><%= link_to 'Edit', edit_product_type_path(index) %></td>
-          <td><%= link_to 'Destroy', product_type_path(index), method: :delete %></td>
+          <td><%= link_to 'Edit', edit_product_type_path(index) ,class: "btn btn-sm btn-outline-secondary" %></td>
+          <td><%= link_to 'Destroy', product_type_path(index), method: :delete,class: "btn btn-sm btn-outline-secondary" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
+<div class="rentals-bottom"></div>

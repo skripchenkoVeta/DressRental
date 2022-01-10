@@ -21,11 +21,37 @@
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable, :trackable and :omniauthable
+  # :lockable, :timeoutable, :trackable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable
+         :confirmable, :omniauthable
   belongs_to :profileable, polymorphic: true, optional: true
-
+  has_many :comments
   accepts_nested_attributes_for :profileable
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.skip_confirmation!
+    end
+  end
+
+  def admin?
+    role == 'Admin'
+  end
+
+  def seller?
+    role == 'Seller' && !profileable.freeze
+  end
+
+  def buyer?
+    role == 'Buyer' && !profileable.freeze
+  end
+
+  def seller_and_buyer?
+    role == 'Buyer' || role == 'Seller'
+  end
 end

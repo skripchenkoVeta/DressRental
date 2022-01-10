@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class SalonsController < ApplicationController
-  NUMBER_ITEMS_PER_PAGE = 19
+  NUMBER_ITEMS_PER_PAGE = 4
   def index
-    @salons = Salon.all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+    @salons = Salon.includes(:seller_info).includes(:picture_attachment).all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
   end
 
   def menu
@@ -18,7 +18,7 @@ class SalonsController < ApplicationController
     @salon = Salon.create(salon_params)
     if @salon
       flash[:success] = 'Success'
-      redirect_to salon_menu_path(@salon)
+      redirect_to salon_menu_path
     else
       flash[:error] = 'Error'
       render :new
@@ -74,6 +74,6 @@ class SalonsController < ApplicationController
   private
 
   def salon_params
-    params.require(:salon).permit(:name, :address, :seller_info_id)
+    params.require(:salon).permit(:name, :address, :seller_info_id, :picture)
   end
 end
