@@ -1,36 +1,41 @@
-<div class="container" style="margin-top:60px;">
-  <div class="row">
-    <div class="col-md-7">
-    <% if current_user.role == 'Admin' %>
-      <%= link_to 'Back', products_path, class: 'btn btn-primary' %></td>
-    <% else %>
-      <%= link_to 'Back', product_menu_path, class: 'btn btn-primary' %></td>
-    <% end %>
-      <%= form_for @product do |f| %>
-        <div class="field">
-          <%= f.label :name %><br>
-          <%= f.text_field :name, required: true, class: "form-control" %>
-        </div>
-            <div class="field">
-          <%= f.label :description %><br>
-          <%= f.text_field :description , required: true, class: "form-control" %>
-        </div>
-            <div class="field">
-          <%= f.label :price %><br>
-          <%= f.text_field :price, required: true, class: "form-control" %>
-        </div>
-        <%= f.file_field :avatar %>
-         <%= f.collection_select :product_type_id, ProductType.all, :id, :name %>
-         <% if current_user.role == 'Seller' %>
-         <%= f.collection_select :salon_id, current_user.profileable.salons, :id, :name %>
-         <% else %>
-         <%= f.collection_select :salon_id, Salon.all, :id, :name %>
-         <% end %>
-        <div class="actions">
-          <%= f.submit 'Save', class:"btn btn-primary" %>
-        </div>
-      <% end %>
+<div class="container block-2">
+  <div class="col-md-4">
+    <div class="row border shadow-sm position-relative">
+      <div class="col-md-9 items">
+        <% if current_user.role == 'Admin' %>
+          <%= link_to 'Back', products_path, class: 'btn btn-primary items-btn' %></td>
+        <% else %>
+          <%= link_to 'Back', product_menu_path, class: 'btn btn-primary items-btn' %></td>
+        <% end %>
+        <%= form_for @product do |f| %>
+          <div class="field">
+            <%= f.label :name %><br>
+            <%= f.text_field :name, required: true, class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= f.label :description %><br>
+            <%= f.text_field :description , required: true, class: "form-control" ,:minlength => 15 %>
+          </div>
+          <div class="field">
+            <%= f.label :price %><br>
+            <%= f.text_field :price, required: true, class: "form-control" %>
+          </div>
+          <%= f.file_field :avatar %>
+          <%= f.label :category %><br>
+          <%= f.collection_select :product_type_id, ProductType.all, :id, :name %><br>
+          <% if current_user.role == 'Seller' %>
+            <%= f.label :salon %><br>
+            <%= f.collection_select :salon_id, current_user.profileable.salons, :id, :name %>
+          <% else %>
+            <%= f.label :salon %><br>
+            <%= f.collection_select :salon_id, Salon.all, :id, :name %>
+          <% end %>
+          <div class="actions">
+            <%= f.submit 'Save', class:"btn btn-primary items-btn" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col"></div>
     </div>
-    <div class="col"></div>
   </div>
 </div>

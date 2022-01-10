@@ -21,3 +21,27 @@ body{
 nav{
    background-color: rgba(0, 0, 0, 0.589);
 }
+.index-image{
+   border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+  height: 150px;
+}
+.image-card{
+   height: 225px; 
+   width: 100%; 
+   display: block;
+}
+.block{
+   margin:100px 0px 0px 80px;
+}
+.block-2{
+   margin-top:60px;
+}
+.items{
+   padding: 19px 10px;
+}
+.items-btn{
+   margin: 7px;
+}

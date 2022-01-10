@@ -1,49 +1,48 @@
-<div class="row" style="margin:100px 0px 0px 80px;">
+<div class="row block">
     <%= render 'seller_profile/listmenu' %>
     <div class="col-8">
-    <%= link_to 'All rentals', rentals_path, class: "btn btn-sm btn-outline-secondary" %>
-    <%= link_to 'Completed rentals', rentals_path(finished: true), class: "btn btn-sm btn-outline-secondary"  %>
-    <%= link_to 'Active rentals', rentals_path(rental: true), class: "btn btn-sm btn-outline-secondary" %>
-
-<table class="table table-striped" style="margin-top:50px;">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Surname</th>
-        <th scope="col">Product</th>
-        <th scope="col">Salon</th>
-        <th scope="col">Price</th>
-        <th scope="col">Start rental</th>
-        <th scope="col">End rental</th>
-        <th scope="col">Status</th>
-        <th scope="col">Approve</th>
-      </tr>
-    </thead>  
-    <% @rentals.each_with_index do |index| %>       
-        <tr>
+      <%= link_to 'All rentals', rentals_path, class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to 'Completed rentals', rentals_path(finished: true), class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to 'Active rentals', rentals_path(rental: true), class: "btn btn-sm btn-outline-secondary" %>
+      <table class="table table-striped block-2">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Product</th>
+            <th scope="col">Salon</th>
+            <th scope="col">Price</th>
+            <th scope="col">Start rental</th>
+            <th scope="col">End rental</th>
+            <th scope="col">Status</th>
+            <th scope="col">Approve</th>
+          </tr>
+        </thead>
+        <% @rentals.each_with_index do |index| %>
+          <tr>
             <td><%= index.buyer_info.user.name %></td>
-        <td><%= index.buyer_info.user.surname %></td>
-          <td><%= index.product.name %></td>
-          <td><%= index.product.salon.name %></td>
-          <td><%= index.product.price %></td>
-          <td><%= index.start_rent %></td>
-          <td><%= index.end_rent %></td>
-          <% if index.status == true && index.approve == true%>
-              <td><%= button_to "Finish rental",action:"status", status_id: index.id, method: :post, :class => 'btn btn-primary' %>
-              </td>
-            <% elsif index.approve == false%>
-            <td>Need approved</td>
-            <%else%>
-            <td>Rental finished</td>
-               <% end %>
-          <% if index.approve == false %>
+            <td><%= index.buyer_info.user.surname %></td>
+            <td><%= index.product.name %></td>
+            <td><%= index.product.salon.name %></td>
+            <td><%= index.product.price %></td>
+            <td><%= index.start_rent %></td>
+            <td><%= index.end_rent %></td>
+            <% if index.status == true && index.approve == true %>
+              <td><%= button_to "Finish rental",action:"status", status_id: index.id, method: :post, :class => 'btn btn-primary' %></td>
+            <% elsif index.approve == false %>
+              <td>Need approved</td>
+            <% else %>
+              <td>Rental finished</td>
+            <% end %>
+            <% if index.approve == false %>
               <td><%= button_to "Approve",action:"approve", approve_id: index.id, method: :post, :class => 'btn btn-primary' %>
               <%= link_to "Reject", rental_path(index),method: :delete , :class => 'btn btn-primary' %></td>
-            <% else %><td>Approved</td>
-               <% end %>
-        </tr>
-    <% end %>
-  </table>
-  </div>
-  </div>
-
+            <% else %>
+              <td>Approved</td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+</div>
+<div class="rentals-bottom"></div>

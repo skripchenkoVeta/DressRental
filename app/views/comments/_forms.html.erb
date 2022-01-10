@@ -1,0 +1,10 @@
+<%= form_with model: [@salon, @salon.comments.build] do |form| %>
+    <p>
+    <%= form.label :message %><br>
+    <%= form.text_area :message %>
+
+    <%= form.submit class:"btn" %>
+    </p>
+    <p>
+</p>
+    <% end %>

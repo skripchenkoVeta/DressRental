@@ -1,0 +1,28 @@
+.date {
+    font-size: 11px
+}
+
+.comment-text {
+    font-size: 12px
+}
+
+.fs-12 {
+    font-size: 12px
+}
+.name {
+    color: #007bff
+}
+
+.btn {
+    display: inline-block;
+    background-color: #c2c3c2;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #131313;
+    text-decoration: none;
+    padding: 12px 30px;
+    transition: all .5s;
+  }
+.btn:hover {
+    background-color: #ececec;
+}

@@ -1,4 +1,4 @@
-<section class="h-100 gradient-form" style="margin-top:70px;">
+<section class="h-100 gradient-form">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
@@ -37,23 +37,23 @@
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br>
-    <%= f.password_field :password, autocomplete: "new-password" , class:"form-control" %>
+    <%= f.password_field :password, autocomplete: "new-password" , class:"form-control",:minlength => 7 %>
   </div>
 
   <div class="field form-outline mb-4">
     <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:"form-control" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:"form-control",:minlength => 7 %>
   </div>
 
   <%= f.fields_for :seller_infos do |builder| %>
     <%= builder.hidden_field :freeze , value: 'false' %>
     <div class="field form-outline mb-4">
       <%= builder.label :kpp %><br>
-      <%= builder.text_field :kpp,class:"form-control" %>
+      <%= builder.text_field :kpp,class:"form-control" ,:maxlength => 9, :minlength => 9 %>
     </div>
     <div class="field form-outline mb-4">
       <%= builder.label :unp %><br>
-      <%= builder.text_field :unp,class:"form-control" %>
+      <%= builder.text_field :unp,class:"form-control", :maxlength => 9, :minlength => 9 %>
     </div>
       <div class="field form-outline mb-4">
       <%= builder.label :supplier_name %><br>
