@@ -1,4 +1,4 @@
-class CommentPolicy < ApplicationPolicy
+class RentalPolicy < ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -15,13 +15,13 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def create?
-    return false if @user.nil?
-
     true
   end
 
   def new?
-    create?
+    return create? if !@user.nil? && @user.buyer?
+
+    false
   end
 
   def update?

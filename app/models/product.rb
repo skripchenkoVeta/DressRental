@@ -25,6 +25,6 @@ class Product < ApplicationRecord
   validates :description, length: { minimum: 15 }, presence: true
 
   def product_type_name
-    self.product_type&.name.present? ? self.product_type.name : 'None'
+    product_type&.name.present? ? product_type.name : 'None'
   end
 end

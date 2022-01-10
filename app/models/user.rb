@@ -26,9 +26,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable
   belongs_to :profileable, polymorphic: true, optional: true
-
+  has_many :comments
   accepts_nested_attributes_for :profileable
-
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -40,4 +39,19 @@ class User < ApplicationRecord
     end
   end
 
+  def admin?
+    role == 'Admin'
+  end
+
+  def seller?
+    role == 'Seller' && !profileable.freeze
+  end
+
+  def buyer?
+    role == 'Buyer' && !profileable.freeze
+  end
+
+  def seller_and_buyer?
+    role == 'Buyer' || role == 'Seller'
+  end
 end

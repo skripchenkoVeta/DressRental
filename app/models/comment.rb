@@ -14,4 +14,13 @@
 #
 class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
+  belongs_to :user
+
+  def user_name
+    user&.name
+  end
+
+  def user_surname
+    user&.surname
+  end
 end
