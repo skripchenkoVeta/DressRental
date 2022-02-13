@@ -1,3 +1,5 @@
+  *Dress Rental*
+
 For study:
 While working on migrations and models use those docs as reference:
 
