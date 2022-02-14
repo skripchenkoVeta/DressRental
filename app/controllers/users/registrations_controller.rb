@@ -28,6 +28,7 @@ module Users
         buyer_info = BuyerInfo.create(sign_up_buyer_params)
         user_sign_up_params = sign_up_params.merge(profileable_id: buyer_info.id).except(:buyer_infos)
       end
+      
       build_resource(user_sign_up_params)
       resource.save
       yield resource if block_given?

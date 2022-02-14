@@ -41,9 +41,13 @@ class SalonsController < ApplicationController
   end
 
   def update
+    
+    binding.pry
+    
     @salon = Salon.find(params[:id])
 
     if @salon.update(salon_params)
+
       flash[:success] = 'Success'
       if current_user[:role] == 'Admin'
         redirect_to salons_path
