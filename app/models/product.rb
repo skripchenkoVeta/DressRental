@@ -18,7 +18,7 @@ class Product < ApplicationRecord
   belongs_to :salon
   has_many :comments, as: :commentable
   has_many :rentals
-  has_one_attached :avatar
+  has_many_attached  :avatars
 
   validates :name, presence: true
   validates :price, numericality: { greater_than: 0 }, presence: true

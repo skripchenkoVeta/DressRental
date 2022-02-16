@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   NUMBER_ITEMS_PER_PAGE = 4
 
   def index
-    @products = Product.includes(:salon).includes(:product_type).includes(:avatar_attachment).all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+    @products = Product.includes(:salon).includes(:product_type).includes(:avatars_attachments).all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
   end
 
   def menu
@@ -72,6 +72,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :product_type_id, :salon_id, :avatar)
+    params.require(:product).permit(:name, :description, :price, :product_type_id, :salon_id, avatars:[])
   end
 end

@@ -16,7 +16,7 @@
           <div class="field">
             <%= f.label :address %><br>
             <%= f.text_field :address, required: true, class: "form-control" %>
-            <%= f.file_field :picture %>
+            <%= f.file_field :pictures, multiple: true, name: "attachment[file][]" %>
           </div>
           <div class="actions">
             <%= f.submit 'Save', class:"btn btn-primary items-btn" %>

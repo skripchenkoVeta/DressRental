@@ -15,7 +15,7 @@ class Salon < ApplicationRecord
   has_many :products, dependent: :delete_all
   has_many :comments, as: :commentable, dependent: :delete_all
   belongs_to :seller_info
-  has_one_attached :picture
+  has_many_attached :pictures
 
   validates :name, :address, presence: true
 end
