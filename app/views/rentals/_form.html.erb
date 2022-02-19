@@ -19,11 +19,11 @@
             </div>
             <div class="field">
               <%= f.label :start_rent %><br>
-              <%= f.date_select :start_rent , order: [:month, :day, :year] ,start_year: Time.now.year, end_year: 2023, class: "form-control" %>
+              <%= f.date_field :start_rent, min: Date.today+1, max: Date.today+61, class: "form-control" %>
             </div>
             <div class="field">
               <%= f.label :end_rent %><br>
-              <%= f.date_select :end_rent , order: [:month, :day, :year] ,start_year: Time.now.year, end_year: 2023, class: "form-control" %>
+              <%= f.date_field :end_rent, min: Date.today+1, max: Date.today+365, class: "form-control" %>
             </div>
             <div class="actions">
               <%= f.submit 'Save', class:"btn btn-primary" %>
