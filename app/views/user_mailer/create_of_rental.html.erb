@@ -8,7 +8,7 @@
     <p>
       <%= @user.buyer_info.user.name %> <%= @user.buyer_info.user.surname %> has asked you to rent "<%= @user.product.name %>" product, which belongs to the "<%= @user.product.salon.name %>" salon.  </p>
     <p>
-      The rental starts on <%= @user.start_rent %> and lasts until <%= @user.end_rent %>.
+      The rental starts on <%= @user.start_rent.to_formatted_s(:long) %> and lasts until <%= @user.end_rent.to_formatted_s(:long) %>.
     </p>
     <p>Log in to your personal account to confirm the lease!</p>
   </body>
