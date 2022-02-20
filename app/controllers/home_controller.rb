@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  NUMBER_ITEMS_PER_PAGE = 16
+  NUMBER_ITEMS_PER_PAGE = 20
   def index; end
 
   def catalog_salons
