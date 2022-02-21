@@ -14,11 +14,19 @@ User.delete_all
 Salon.delete_all
 Product.delete_all
 Comment.delete_all
+Size.delete_all
 
 seller_type_1 = SellerType.create(name: 'SP')
 seller_type_2 = SellerType.create(name: 'SP with PIT')
 seller_type_3 = SellerType.create(name: 'organization')
 seller_type_4 = SellerType.create(name: 'organization with PIT')
+
+size_1 = Size.create(size: 42)
+size_2 = Size.create(size: 44)
+size_3 = Size.create(size: 46)
+size_4 = Size.create(size: 48)
+size_5 = Size.create(size: 50)
+size_6 = Size.create(size: 52)
 
 product_type_1 = ProductType.create(name: 'Headdress')
 product_type_2 = ProductType.create(name: 'Dress')

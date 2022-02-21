@@ -10,6 +10,7 @@
           <tr>
             <th scope="col">Product</th>
             <th scope="col">Salon</th>
+            <th scope="col">Size</th>
             <th scope="col">Price for 1 day</th>
             <th scope="col">Total</th>
             <th scope="col">Start rental</th>
@@ -18,9 +19,11 @@
           </tr>
         </thead>
         <% @rentals.each_with_index do |index| %>
+        <%binding.pry%>
             <tr>
               <td><%= index.product.name %></td>
               <td><%= index.product.salon.name %></td>
+              <td><%= index.size.size %></td>
               <td><%= index.product.price %></td>
               <td><%= (index.end_rent - index.start_rent)/60/60/24 * index.product.price %></td>
               <td><%= (index.start_rent).to_formatted_s(:long) %></td>
