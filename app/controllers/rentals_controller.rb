@@ -100,6 +100,6 @@ class RentalsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def rental_params
-    params.require(:rental).permit(:status, :start_rent, :end_rent, :buyer_info_id, :product_id, :approve)
+    params.require(:rental).permit(:status, :start_rent, :end_rent, :buyer_info_id, :product_id, :approve,:size_id)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_08_135112) do
+ActiveRecord::Schema.define(version: 2022_02_21_215341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,10 +97,12 @@ ActiveRecord::Schema.define(version: 2022_01_08_135112) do
     t.boolean "approve"
     t.bigint "buyer_info_id"
     t.bigint "product_id"
+    t.bigint "size_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["buyer_info_id"], name: "index_rentals_on_buyer_info_id"
     t.index ["product_id"], name: "index_rentals_on_product_id"
+    t.index ["size_id"], name: "index_rentals_on_size_id"
   end
 
   create_table "salons", force: :cascade do |t|
@@ -125,6 +127,12 @@ ActiveRecord::Schema.define(version: 2022_01_08_135112) do
 
   create_table "seller_types", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sizes", force: :cascade do |t|
+    t.integer "size"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -7,7 +7,7 @@ class CreateRentals < ActiveRecord::Migration[6.1]
       t.boolean :approve
       t.references :buyer_info
       t.references :product
-
+      t.references :size
       t.timestamps
     end
   end
