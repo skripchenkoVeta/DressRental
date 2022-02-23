@@ -19,7 +19,6 @@
           </tr>
         </thead>
         <% @rentals.each_with_index do |index| %>
-        <%binding.pry%>
             <tr>
               <td><%= index.product.name %></td>
               <td><%= index.product.salon.name %></td>
