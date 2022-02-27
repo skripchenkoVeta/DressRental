@@ -1,12 +1,18 @@
+  <div class="container mt-2 mb-2">
+        <div class="d-flex flex-column col-md-8">
+                    <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white px-4">
+                <div class="commented-section mt-2 ">
 <%= form_with model: [@product, @product.comments.build] do |form| %>
-    <p>
-    <%= form.label :message %><br>
+      You:
+      <%= current_user.name%>
+      <%= current_user.surname%>
+<br>
     <%= form.text_area :message %>
-    </p>
-    <p>
-    <%= form.submit class:"btn" %>
-    </p>
-    <p>
-</p>
+<br>
+    <%= form.submit 'Send', class:"btn btn-sm btn-outline-secondary" %>
 
     <% end %>
+</div>
+</div>
+</div>
+</div>
