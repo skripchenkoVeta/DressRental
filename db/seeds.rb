@@ -16,6 +16,7 @@ Salon.delete_all
 Product.delete_all
 Comment.delete_all
 Size.delete_all
+Rental.delete_all
 
 buyers = FactoryBot.create_list(:buyer_info, 10)
 seller_types = SellerType.create([{ name: 'SP' }, { name: 'SP with PIT' }, { name: 'organization' },
@@ -27,12 +28,12 @@ product_types = ProductType.create([{ name: 'Dress' }, { name: 'Suit' }, { name:
 
 sellers = SellerInfo.create([
                               { unp: 127_098_765, kpp: 184_562_349, supplier_name: 'Independent production', seller_type_id: seller_types[3],
-                                freeze: 'false' }, { unp: 677_878_765, kpp: 454_662_349, supplier_name: 'SP "for u"', seller_type_id: seller_types[4], freeze: 'false' }, { unp: 987_658_765, kpp: 156_756_649, supplier_name: 'Independent production', seller_type_id: seller_types[1], freeze: 'false' }, { unp: 900_878_765, kpp: 985_676_549, supplier_name: 'SP "Friend"', seller_type_id: seller_types[2], freeze: 'false' }
+                                freeze: 'false' }, { unp: 677_878_765, kpp: 454_662_349, supplier_name: 'SP "for u"', seller_type_id: seller_types[0], freeze: 'false' }, { unp: 987_658_765, kpp: 156_756_649, supplier_name: 'Independent production', seller_type_id: seller_types[1], freeze: 'false' }, { unp: 900_878_765, kpp: 985_676_549, supplier_name: 'SP "Friend"', seller_type_id: seller_types[2], freeze: 'false' }
                             ])
 
 user_sellers = User.create([
                              { name: 'Sergey', surname: 'Brooks', email: 'serbrook@gmail.con', number: '+375697895467', password: '1234567',
-                               password_confirmation: '1234567', role: 'Seller', profileable: sellers[1] }, { name: 'Alena', surname: 'Alenkova', email: 'alenkova@gmail.con', number: '+375890976788', password: '1234567', password_confirmation: '1234567', role: 'Seller', profileable: sellers[2] }, { name: 'Maksim', surname: 'Sablin', email: 'sablin@gmail.con', number: '+375678995499', password: '1234567', password_confirmation: '1234567', role: 'Seller', profileable: sellers[3] }, { name: 'Mark', surname: 'Bobrov', email: 'bobrov@gmail.con', number: '+375890666780', password: '1234567', password_confirmation: '1234567', role: 'Seller', profileable: sellers[4] }
+                               password_confirmation: '1234567', role: 'Seller', profileable: sellers[0] }, { name: 'Alena', surname: 'Alenkova', email: 'alenkova@gmail.con', number: '+375890976788', password: '1234567', password_confirmation: '1234567', role: 'Seller', profileable: sellers[1] }, { name: 'Maksim', surname: 'Sablin', email: 'sablin@gmail.con', number: '+375678995499', password: '1234567', password_confirmation: '1234567', role: 'Seller', profileable: sellers[2] }, { name: 'Mark', surname: 'Bobrov', email: 'bobrov@gmail.con', number: '+375890666780', password: '1234567', password_confirmation: '1234567', role: 'Seller', profileable: sellers[3] }
                            ])
 
 user_admins = User.create([
@@ -50,13 +51,18 @@ salons.each do |salon|
   product_types.each do |product_type|
     FactoryBot.create_list(:product, 4, salon: salon, product_type: product_type)
   end
-  user_buyers.each do |buye|
-    FactoryBot.create_list(:comment, rand(1..2), commentable: salon, user: buye)
+  user_buyers.each do |buyer|
+    FactoryBot.create_list(:comment, rand(0..1), commentable: salon, user: buyer)
   end
 end
 products = Product.all
 products.each do |product|
-  user_buyers.each do |buye|
-    FactoryBot.create_list(:comment, rand(1..2), commentable: product, user: buye)
+  user_buyers.each do |buyer|
+    FactoryBot.create_list(:comment, rand(0..1), commentable: product, user: buyer)
+  end
+  buyers.each do |buyer|
+    FactoryBot.create_list(:rental, rand(0..1), buyer_info: buyer, product: product, size: sizes[rand(0..5)])
+    FactoryBot.create_list(:rental, rand(0..1), :active, buyer_info: buyer, product: product, size: sizes[rand(0..5)])
+    FactoryBot.create_list(:rental, rand(0..1), :ended, buyer_info: buyer, product: product, size: sizes[rand(0..5)])
   end
 end
