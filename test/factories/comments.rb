@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :comment, class: 'Comment' do
     association :user
-    message { 'asdasdada' }
     association :commentable
+    message { Faker::Hipster.sentence }
   end
 end

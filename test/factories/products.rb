@@ -4,11 +4,8 @@ FactoryBot.define do
   factory :product, class: 'Product' do
     association :salon
     association :product_type
-    price { 100 }
-    description { Faker::Lorem.characters(number: 15, min_alpha: 15) }
-    name { 'public' }
-    # after(:create) do |product|
-    #   create_list(:comment, rand(1..4), commentable: product)
-    # end
+    price { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
+    description { Faker::Hipster.paragraph }
+    name { Faker::Lorem.sentence(word_count: 3) }
   end
 end
