@@ -1,0 +1,42 @@
+<table class="table table-striped" style="margin-top:50px;">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Salon</th>
+            <th scope="col">Size</th>
+            <th scope="col">Price for 1 day</th>
+            <th scope="col">Deposit (30 BYN)</th>
+            <th scope="col">Total</th>
+            <th scope="col">Amount of days</th>
+            <th scope="col">Start rental</th>
+            <th scope="col">End rental</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+            <tr>
+              <td><%= @rent.product.name %></td>
+              <td><%= @rent.product.salon.name %></td>
+              <td><%= @rent.size.size %></td>
+              <td><%= @rent.product.price %></td>
+              <td>30</td>
+              <%if (@rent.end_rent - @rent.start_rent)/60/60/24 == 0%>
+              <td><%= (@rent.product.price + 30).round(2)%></td>
+              <%else%>
+              <td><%= ((@rent.end_rent - @rent.start_rent)/60/60/24 * @rent.product.price + 30).round(2)%></td>
+              <%end%>
+            <td><%= ((@rent.end_rent - @rent.start_rent)/60/60/24).round %></td>
+            
+            <td><%= @rent.start_rent.strftime("%m/%d/%Y") %></td>
+            <td><%= @rent.end_rent.strftime("%m/%d/%Y") %></td>
+              <% if @rent.status == true && @rent.approve == true %>
+                <td>Active </td>
+              <% elsif @rent.approve == false %>
+                <td>Inactive</td>
+               <td> <%= link_to "Remove", rental_path(@rent),method: :delete , :class => 'btn btn-primary' %></td>
+              <% else %>
+                <td>Rental finished</td>
+              <% end %>
+            </tr>
+    </table>
+  </div>
+</div>

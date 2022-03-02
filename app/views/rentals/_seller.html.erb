@@ -13,10 +13,13 @@
             <th scope="col">Salon</th>
             <th scope="col">Size</th>
             <th scope="col">Price for 1 day</th>
+            <th scope="col">Deposit (30 BYN)</th>
             <th scope="col">Total</th>
+            <th scope="col">Amount of days</th>
             <th scope="col">Start rental</th>
             <th scope="col">End rental</th>
             <th scope="col">Status</th>
+            <th scope="col">Sanction</th>
             <th scope="col">Approve</th>
           </tr>
         </thead>
@@ -28,14 +31,24 @@
             <td><%= index.product.salon.name %></td>
             <td><%= index.size.size %></td>
             <td><%= index.product.price %></td>
-            <td><%= (index.end_rent - index.start_rent)/60/60/24 * index.product.price %></td>
-            <td><%= index.start_rent.to_formatted_s(:long) %></td>
-            <td><%= index.end_rent.to_formatted_s(:long) %></td>
+              <td>30</td>
+              <%if (index.end_rent - index.start_rent)/60/60/24 == 0%>
+              <td><%= (index.product.price + 30).round(2)%></td>
+              <%else%>
+              <td><%= ((index.end_rent - index.start_rent)/60/60/24 * index.product.price + 30).round(2)%></td>
+              <%end%>
+            <td><%= ((index.end_rent - index.start_rent)/60/60/24).round %></td>
+            
+            <td><%= index.start_rent.strftime("%m/%d/%Y") %></td>
+            <td><%= index.end_rent.strftime("%m/%d/%Y") %></td>
             <% if index.status == true && index.approve == true %>
-              <td><%= button_to "Finish rental",action:"status", status_id: index.id, method: :post, :class => 'btn btn-primary' %></td>
+              <td><%= button_to "Finish rental",action:"status", status_id: index.id, method: :post, :class => 'btn btn-primary' %>
+             <td>  <%= button_to "Sanction",action:"sanction",rent_id: index.id, method: :post, :class => 'btn btn-primary' %></td>
             <% elsif index.approve == false %>
               <td>Need approved</td>
+              <td>Need approved</td>
             <% else %>
+              <td>Rental finished</td>
               <td>Rental finished</td>
             <% end %>
             <% if index.approve == false %>
@@ -48,5 +61,11 @@
         <% end %>
       </table>
     </div>
+    <div class="container col-md-5">
+    <%= paginate @rentals,
+              theme: 'bootstrap-5',
+              pagination_class: "pagination flex-wrap justify-content-center",
+              nav_class: "d-inline-block bg-light" %>
+</div>
 </div>
 <div class="rentals-bottom"></div>
