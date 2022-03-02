@@ -7,9 +7,11 @@ class RentalsController < ApplicationController
     if current_user[:role] == 'Buyer'
       @rentals =
         if params[:finished]
-          Rental.where(buyer_info_id: current_user.profileable, status: false, approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+          Rental.where(buyer_info_id: current_user.profileable, status: false,
+                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         elsif params[:rental]
-          Rental.where(buyer_info_id: current_user.profileable, status: true, approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+          Rental.where(buyer_info_id: current_user.profileable, status: true,
+                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         else
           Rental.where(buyer_info_id: current_user.profileable).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         end
@@ -18,9 +20,11 @@ class RentalsController < ApplicationController
       @list_products = Product.where(salon_id: @list_salons)
       @rentals =
         if params[:finished]
-          Rental.where(product_id: @list_products, status: false, approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+          Rental.where(product_id: @list_products, status: false,
+                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         elsif params[:rental]
-          Rental.where(product_id: @list_products, status: true, approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+          Rental.where(product_id: @list_products, status: true,
+                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         else
           Rental.where(product_id: @list_products).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         end
@@ -109,6 +113,6 @@ class RentalsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def rental_params
-    params.require(:rental).permit(:status, :start_rent, :end_rent, :buyer_info_id, :product_id, :approve,:size_id)
+    params.require(:rental).permit(:status, :start_rent, :end_rent, :buyer_info_id, :product_id, :approve, :size_id)
   end
 end
