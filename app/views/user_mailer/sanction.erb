@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+  </head>
+  <body>
+ <h1>Welcome to DressRental. </h1>
+    <p>
+    You didn’t forget that your thing must be returned on time and be in the same form in which it was when it fell into your hands? :(
+    </p>
+    <h3> We really hope so!</h3>
+    <p>
+      If these requirements are not met, your seller <%= @user.product.salon.seller_info.user.name%> <%= @user.product.salon.seller_info.user.surname%> has every right not to return your security deposit. We do not need unnecessary problems, just like you. 
+    </p>
+    <p> Let's continue to be friends </p>
+    <p>With love DressRental!</p>
+  </body>
+</html>

@@ -1,33 +1,40 @@
 # frozen_string_literal: true
 
 class RentalsController < ApplicationController
+  NUMBER_ITEMS_PER_PAGE = 7
   # GET /rentals or /rentals.json
   def index
     if current_user[:role] == 'Buyer'
       @rentals =
         if params[:finished]
-          Rental.where(buyer_info_id: current_user.profileable, status: false, approve: true)
+          Rental.where(buyer_info_id: current_user.profileable, status: false,
+                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         elsif params[:rental]
-          Rental.where(buyer_info_id: current_user.profileable, status: true, approve: true)
+          Rental.where(buyer_info_id: current_user.profileable, status: true,
+                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         else
-          Rental.where(buyer_info_id: current_user.profileable)
+          Rental.where(buyer_info_id: current_user.profileable).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         end
     else
       @list_salons = current_user.profileable.salons
       @list_products = Product.where(salon_id: @list_salons)
       @rentals =
         if params[:finished]
-          Rental.where(product_id: @list_products, status: false, approve: true)
+          Rental.where(product_id: @list_products, status: false,
+                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         elsif params[:rental]
-          Rental.where(product_id: @list_products, status: true, approve: true)
+          Rental.where(product_id: @list_products, status: true,
+                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         else
-          Rental.where(product_id: @list_products)
+          Rental.where(product_id: @list_products).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         end
     end
   end
 
   # GET /rentals/1 or /rentals/1.json
-  def show; end
+  def show
+    @rent = Rental.find(params[:id])
+  end
 
   # GET /rentals/new
   def new
@@ -39,6 +46,12 @@ class RentalsController < ApplicationController
   def status
     rent = Rental.find(params[:status_id])
     rent.update(status: false)
+    redirect_to rentals_path
+  end
+
+  def sanction
+    rent = Rental.find(params[:rent_id])
+    UserMailer.with(user: rent).sanction.deliver_now
     redirect_to rentals_path
   end
 
@@ -100,6 +113,6 @@ class RentalsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def rental_params
-    params.require(:rental).permit(:status, :start_rent, :end_rent, :buyer_info_id, :product_id, :approve,:size_id)
+    params.require(:rental).permit(:status, :start_rent, :end_rent, :buyer_info_id, :product_id, :approve, :size_id)
   end
 end

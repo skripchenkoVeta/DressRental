@@ -21,4 +21,9 @@ class UserMailer < ApplicationMailer
       @url  = 'http://example.com/login'
       mail(to: @user.buyer_info.user.email, subject: 'Your rental application was rejected')
     end
+    def sanction
+      @user = params[:user]
+      @url  = 'http://example.com/login'
+      mail(to: @user.buyer_info.user.email, subject: 'Dear DressRental User!')
+    end
 end
