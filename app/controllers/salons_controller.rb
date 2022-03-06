@@ -42,7 +42,7 @@ class SalonsController < ApplicationController
 
   def update
     @salon = Salon.find(params[:id])
-
+    authorize @salon
     if @salon.update(salon_params)
 
       flash[:success] = 'Success'

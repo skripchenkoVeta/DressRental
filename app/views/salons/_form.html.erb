@@ -8,7 +8,9 @@
           <%= link_to 'Back', salon_menu_path, class: 'btn btn-primary items-btn' %></td>
         <% end %>
         <%= form_for @salon do |f| %>
+        <%if current_user.role != 'Admin'%>
           <%= f.hidden_field :seller_info_id , value: current_user.profileable_id %>
+          <%end%>
           <div class="field">
             <%= f.label :name %><br>
             <%= f.text_field :name, required: true, class: "form-control" %>
