@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @another_products = Product.where(product_type_id: @product.product_type.id).sample(4)
     authorize @product
   end
 

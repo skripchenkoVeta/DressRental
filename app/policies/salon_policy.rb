@@ -27,7 +27,9 @@ class SalonPolicy < ApplicationPolicy
   end
 
   def edit?
-    update?
+    return update? if !@user.nil? && (user.seller? || user.admin?)
+
+    false
   end
 
   def destroy?

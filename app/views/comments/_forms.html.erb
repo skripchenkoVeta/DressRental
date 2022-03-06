@@ -1,10 +1,18 @@
+  <div class="container mt-2 mb-2">
+        <div class="d-flex flex-column col-md-8">
+                    <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white px-4">
+                <div class="commented-section mt-2 ">
 <%= form_with model: [@salon, @salon.comments.build] do |form| %>
-    <p>
-    <%= form.label :message %><br>
+      You:
+      <%= current_user.name%>
+      <%= current_user.surname%>
+<br>
     <%= form.text_area :message %>
+<br>
+    <%= form.submit 'Send', class:"btn btn-sm btn-outline-secondary" %>
 
-    <%= form.submit class:"btn" %>
-    </p>
-    <p>
-</p>
     <% end %>
+    </div>
+    </div>
+    </div>
+</div>

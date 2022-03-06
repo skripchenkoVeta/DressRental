@@ -1,27 +1,62 @@
-<main class="container-product">
-  <div class="left-column">
-    <% if @product.avatar.attached? %>
-      <%= image_tag @product.avatar,class:"card-img-top active image-size" %>
-    <% else %>
-      <img class="card-img-top active" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20288%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17e22579a47%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17e22579a47%22%3E%3Crect%20width%3D%22288%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2296.84375%22%20y%3D%22118.8%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
-    <% end %>
-  </div>
-  <div class="right-column">
-    <div class="product-description">
-      <span><%= @product.product_type_name %></span>
-      <h1><%= @product.name %></h1>
-      <p><%= @product.description %></p>
-    </div>
-    <div class="product-price">
-      <span><%= @product.price %> BYR</span>
-    </div>
-    <%= link_to 'Rent', new_rental_path(format: @product.id), class:"cart-btn" %>
+<div class="product-block">
+<div class="container">
+<div class="p-4 p-md-5 text-white rounded">
 
-    <div class="comments">
-      <%= link_to 'Salon', salon_path(@product.salon.id), class:"btn btn-sm btn-outline-secondary" %>
-      <h3>Comments</h3>
+      <div class="row rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
+              <div class="col-auto d-none d-lg-block">
+          <% if @product.avatar.attached? %>
+                        <%= image_tag @product.avatar,class:"bd-placeholder-img",width:"400" ,height:"450" %>
+                      <% else %>
+                        <img class="bd-placeholder-img" width="400" height="450" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20288%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17e22579a47%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17e22579a47%22%3E%3Crect%20width%3D%22288%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2296.84375%22%20y%3D%22118.8%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+                      <% end %>
+      </div>
+        <div class="col p-4 d-flex flex-column position-static">
+        <h3 class="mb-0 product-name"><%= @product.name %></h3>
+                <hr class="hr-shadow">
+          <h4 class="mb-1 about-product">About the product</h4>
+          <strong class="d-inline-block mb-2 product-price">Price: <%= @product.price %> BYN*<br><small class="desc-price">*the price is for rent for 1 day</small></strong>
+<strong class="d-inline-block mb-2 product">Type: <%= @product.product_type_name %></strong>
+        <strong class="d-inline-block mb-2 product">Salon: <%= link_to @product.salon.name, salon_path(@product.salon.id),class:"default-link" %></strong>
+          <h5 class="mb-1 product-description">Description</h5>
+          <p class="card-text mb-auto description-text">
+          <%= @product.description %></p>
+           <%= link_to 'Rent', new_rental_path(format: @product.id), class:"link" %>
+          
+        </div>
+    </div>
+</div>
+  <div class="album py-5">
+    <div class="container">
+       <h3 class="another-product">Another products</h1>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+      <% @another_products.each_with_index do |index| %>
+        <div class="col">
+          <div class="card shadow-sm">
+          
+           <% if index.avatar.attached? %>
+                        <%= image_tag index.avatar,class:"bd-placeholder-img",width:"300" ,height:"350" %>
+                      <% else %>
+                        <img class="bd-placeholder-img" width="300" height="350" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20288%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17e22579a47%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17e22579a47%22%3E%3Crect%20width%3D%22288%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2296.84375%22%20y%3D%22118.8%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+                      <% end %>
+              <p class="card-text-name"><%= index.name %></p>
+
+            <%= link_to 'Show', product_path(index) ,class:"btn btn-sm btn-outline-secondary" %>
+          </div>
+        </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+      <div class="row rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
+      <h3 class="comment">Comments</h3>
+      <%if current_user%>
       <%= render 'comments/form' %>
+      <%end%>
       <%= render @product.comments %>
     </div>
   </div>
-</main>
+</div>
+</div>
+            
+
+

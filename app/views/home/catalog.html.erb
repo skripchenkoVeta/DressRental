@@ -34,5 +34,12 @@
                 <div class="price"><%= product.price %> BYR</div>
         </div>
     <% end %>
+       <div class="container col-md-5">
+    <%= paginate @products,
+              theme: 'bootstrap-5',
+              pagination_class: " flex-wrap justify-content-center",
+              nav_class: "d-inline-block bg-light" %>
+  </div>
+
   </div>
 </div>

@@ -27,7 +27,7 @@ class SalonsController < ApplicationController
 
   def show
     @salon = Salon.find(params[:id])
-    @products = Product.where(salon_id: @salon)
+    @products = Product.where(salon_id: @salon).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
 
     if params[:search]
       search = params[:search]
@@ -42,7 +42,7 @@ class SalonsController < ApplicationController
 
   def update
     @salon = Salon.find(params[:id])
-
+    authorize @salon
     if @salon.update(salon_params)
 
       flash[:success] = 'Success'
