@@ -41,11 +41,13 @@ class RentalsController < ApplicationController
     @rental = Rental.new
     authorize @rental
     @product = Product.find(params[:format])
+    @sizes = @product.sizes.where.not(count_size: 0)
   end
 
   def status
     rent = Rental.find(params[:status_id])
     rent.update(status: false)
+    rent.size.update(count_size: rent.size.count_size + 1)
     redirect_to rentals_path
   end
 
@@ -68,6 +70,8 @@ class RentalsController < ApplicationController
   # POST /rentals or /rentals.json
   def create
     @rental = Rental.new(rental_params)
+
+    @rental.size.update(count_size: @rental.size.count_size - 1)
 
     if @rental.save
       UserMailer.with(user: @rental).create_of_rental.deliver_now
@@ -95,6 +99,7 @@ class RentalsController < ApplicationController
   # DELETE /rentals/1 or /rentals/1.json
   def destroy
     @rental = Rental.find(params[:id])
+    @rental.size.update(count_size: @rental.size.count_size + 1)
     if @rental.destroy
       UserMailer.with(user: @rental).rejected.deliver_now
       flash[:success] = 'Success'

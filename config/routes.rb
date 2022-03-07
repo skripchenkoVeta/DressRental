@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :product_types
   resources :rentals
   resources :user
+  resources :sizes
   post 'user/confirmation' => "user#confirmation"
   post 'user/ban' => "user#ban"
   post 'rentals/approve' => "rentals#approve"
