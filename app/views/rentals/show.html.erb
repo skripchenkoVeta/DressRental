@@ -1,42 +1,45 @@
-<table class="table table-striped" style="margin-top:50px;">
-        <thead>
-          <tr>
-            <th scope="col">Product</th>
-            <th scope="col">Salon</th>
-            <th scope="col">Size</th>
-            <th scope="col">Price for 1 day</th>
-            <th scope="col">Deposit (30 BYN)</th>
-            <th scope="col">Total</th>
-            <th scope="col">Amount of days</th>
-            <th scope="col">Start rental</th>
-            <th scope="col">End rental</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-            <tr>
-              <td><%= @rent.product.name %></td>
-              <td><%= @rent.product.salon.name %></td>
-              <td><%= @rent.size.size %></td>
-              <td><%= @rent.product.price %></td>
-              <td>30</td>
-              <%if (@rent.end_rent - @rent.start_rent)/60/60/24 == 0%>
-              <td><%= (@rent.product.price + 30).round(2)%></td>
+<div class="product-block">
+<div class="container">
+<div class="p-4 p-md-5 text-white rounded">
+
+      <div class="row rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
+              <div class="col-auto d-none d-lg-block">
+          <% if @rent.product.avatar.attached? %>
+                        <%= image_tag @rent.product.avatar,class:"bd-placeholder-img",width:"400" ,height:"450" %>
+                      <% else %>
+                        <img class="bd-placeholder-img" width="400" height="450" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20288%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17e22579a47%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17e22579a47%22%3E%3Crect%20width%3D%22288%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2296.84375%22%20y%3D%22118.8%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+                      <% end %>
+      </div>
+        <div class="col p-4 d-flex flex-column position-static">
+        <h3 class="mb-0 product-name"><%= @rent.product.name %></h3>
+                <hr class="hr-shadow">
+          <h4 class="mb-1 about-product"><%= t('rental.about')%></h4>
+          <strong class="d-inline-block mb-2 product-price"><%= t('rental.price')%>: <%= @rent.product.price %> BYN*<br><small class="desc-price">*the price is for rent for 1 day</small></strong>
+         <strong class="d-inline-block mb-2 product-price"><%= t('rental.deposit')%>: 30 BYN</strong>
+          <%if (@rent.end_rent - @rent.start_rent)/60/60/24 == 0%>
+              <strong class="d-inline-block mb-2 product-price"><%= t('rental.total')%>: <%= (@rent.product.price + 30).round(2) %> BYN</strong>
               <%else%>
-              <td><%= ((@rent.end_rent - @rent.start_rent)/60/60/24 * @rent.product.price + 30).round(2)%></td>
+              <strong class="d-inline-block mb-2 product-price"><%= t('rental.total')%>: <%= ((@rent.end_rent - @rent.start_rent)/60/60/24 * @rent.product.price + 30).round(2) %> BYN</strong>
               <%end%>
-            <td><%= ((@rent.end_rent - @rent.start_rent)/60/60/24).round %></td>
-            
-            <td><%= @rent.start_rent.strftime("%m/%d/%Y") %></td>
-            <td><%= @rent.end_rent.strftime("%m/%d/%Y") %></td>
-              <% if @rent.status == true && @rent.approve == true %>
-                <td>Active </td>
+               <strong class="d-inline-block mb-2 product-price"><%= t('rental.amount_of_days')%>: <%= ((@rent.end_rent - @rent.start_rent)/60/60/24).round %></strong>
+              <strong class="d-inline-block mb-2 product-price"><%= t('rental.start')%>: <%= @rent.start_rent.strftime("%m/%d/%Y")%></strong>
+              <strong class="d-inline-block mb-2 product-price"><%= t('rental.end')%>: <%= @rent.end_rent.strftime("%m/%d/%Y") %></strong>
+        <strong class="d-inline-block mb-2 product"><%= t('product.type')%>: <%= @rent.product.product_type_name %></strong>
+        <strong class="d-inline-block mb-2 product"><%= t('rental.salon')%>: <%= link_to @rent.product.salon.name, salon_path(@rent.product.salon.id),class:"default-link" %></strong>
+          <% if @rent.status == true && @rent.approve == true %>
+            <strong class="d-inline-block mb-2 product"><%= t('rental.status')%>: Active </strong>
               <% elsif @rent.approve == false %>
-                <td>Inactive</td>
-               <td> <%= link_to "Remove", rental_path(@rent),method: :delete , :class => 'btn btn-primary' %></td>
+              <strong class="d-inline-block mb-2 product"><%= t('rental.status')%>: Inactive </strong>
               <% else %>
-                <td>Rental finished</td>
+              <strong class="d-inline-block mb-2 product"><%= t('rental.status')%>: Rental finished </strong>
               <% end %>
-            </tr>
-    </table>
-  </div>
+          
+        </div>
+    </div>
 </div>
+</div>
+</div>
+            
+
+
+

@@ -14,7 +14,8 @@ margin-top: 50px;
     position: relative;
     padding: 0 14px;
     text-transform: uppercase;
-    width: 90px;
+    width: 190px;
+    
  }
 
  .link:after {
@@ -28,7 +29,7 @@ margin-top: 50px;
     transition: .5s;
     color: #100f09;
  }
- .link:hover:after {
+ .link:hover:after{
     min-width: 100%;
     background: #807677;
     opacity: .35;

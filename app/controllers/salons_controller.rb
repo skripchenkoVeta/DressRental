@@ -33,7 +33,7 @@ class SalonsController < ApplicationController
       search = params[:search]
       @products = @products.where('name like ?', "%#{search}%")
     end
-    @products = @products.page params[:page]
+    @products = @products.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
   end
 
   def edit

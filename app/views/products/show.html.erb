@@ -13,21 +13,21 @@
         <div class="col p-4 d-flex flex-column position-static">
         <h3 class="mb-0 product-name"><%= @product.name %></h3>
                 <hr class="hr-shadow">
-          <h4 class="mb-1 about-product">About the product</h4>
-          <strong class="d-inline-block mb-2 product-price">Price: <%= @product.price %> BYN*<br><small class="desc-price">*the price is for rent for 1 day</small></strong>
-<strong class="d-inline-block mb-2 product">Type: <%= @product.product_type_name %></strong>
-        <strong class="d-inline-block mb-2 product">Salon: <%= link_to @product.salon.name, salon_path(@product.salon.id),class:"default-link" %></strong>
-          <h5 class="mb-1 product-description">Description</h5>
+          <h4 class="mb-1 about-product"><%=t('product.about')%></h4>
+          <strong class="d-inline-block mb-2 product-price"><%=t('product.price')%>: <%= @product.price %> BYN*<br><small class="desc-price"><%=t('product.price_quote')%></small></strong>
+<strong class="d-inline-block mb-2 product"><%=t('product.type')%>: <%= @product.product_type_name %></strong>
+        <strong class="d-inline-block mb-2 product"><%=t('product.salon')%>: <%= link_to @product.salon.name, salon_path(@product.salon.id),class:"default-link" %></strong>
+          <h5 class="mb-1 product-description"><%=t('product.desc')%></h5>
           <p class="card-text mb-auto description-text">
           <%= @product.description %></p>
-           <%= link_to 'Rent', new_rental_path(format: @product.id), class:"link" %>
+           <%= link_to t('product.rent'), new_rental_path(format: @product.id), class:"link" %>
           
         </div>
     </div>
 </div>
   <div class="album py-5">
     <div class="container">
-       <h3 class="another-product">Another products</h1>
+       <h3 class="another-product"><%=t('product.another_products')%></h1>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
       <% @another_products.each_with_index do |index| %>
         <div class="col">
@@ -40,7 +40,7 @@
                       <% end %>
               <p class="card-text-name"><%= index.name %></p>
 
-            <%= link_to 'Show', product_path(index) ,class:"btn btn-sm btn-outline-secondary" %>
+            <%= link_to t('button.show'), product_path(index) ,class:"btn btn-sm btn-outline-secondary" %>
           </div>
         </div>
         <%end%>
@@ -48,7 +48,7 @@
     </div>
   </div>
       <div class="row rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
-      <h3 class="comment">Comments</h3>
+      <h3 class="comment"><%=t('product.comments')%></h3>
       <%if current_user%>
       <%= render 'comments/form' %>
       <%end%>

@@ -3,9 +3,9 @@
     <div class="row border shadow-sm position-relative">
       <div class="col-md-9 items">
         <% if current_user.role == 'Admin' %>
-          <%= link_to 'Back', products_path, class: 'btn btn-primary items-btn' %></td>
+          <%= link_to t('button.back'), products_path, class: 'btn btn-primary items-btn' %></td>
         <% else %>
-          <%= link_to 'Back', product_menu_path, class: 'btn btn-primary items-btn' %></td>
+          <%= link_to t('button.back'), product_menu_path, class: 'btn btn-primary items-btn' %></td>
         <% end %>
         <%= form_for @product do |f| %>
           <div class="field">
@@ -31,7 +31,7 @@
             <%= f.collection_select :salon_id, Salon.all, :id, :name %>
           <% end %>
           <div class="actions">
-            <%= f.submit 'Save', class:"btn btn-primary items-btn" %>
+            <%= f.submit t('button.save'), class:"btn btn-primary items-btn" %>
           </div>
         <% end %>
       </div>

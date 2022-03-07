@@ -3,8 +3,8 @@
    <div class="row border shadow-sm position-relative">
       <div class="col p-4 d-flex flex-column position-static">
         <h3 class="mb-0"><%= @product.name %></h3>
-        <h5 class="mb-1 text-muted">Salon: <%= @product.salon.name %></h5>
-        <h6 class="mb-1 text-muted">Price: <%= @product.price %></h6>
+        <h5 class="mb-1 text-muted"><%= t('rental.salon')%>: <%= @product.salon.name %></h5>
+        <h6 class="mb-1 text-muted"><%= t('rental.price')%>: <%= @product.price %></h6>
           <%= form_for @rental do |f| %>
             <%= f.hidden_field :status , value: 'false' %>
             <%= f.hidden_field :approve , value: 'false' %>
@@ -27,7 +27,7 @@
                <%= f.collection_select :size_id, @sizes, :id, :size %><br>
             </div>
             <div class="actions">
-              <%= f.submit 'Save', class:"btn btn-primary" %>
+              <%= f.submit t('button.save'), class:"btn btn-primary" %>
             </div>
          <% end %>
       </div>

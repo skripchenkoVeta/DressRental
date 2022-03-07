@@ -2,7 +2,7 @@
     <%= render 'seller_profile/listmenu' %>
     <div class="col-9">
         <div class="container">
-            <%= link_to 'Create new product', new_product_path, class:"btn btn-outline-secondary" %>
+            <%= link_to t('product.create'), new_product_path, class:"btn btn-outline-secondary" %>
         </div>
         <div class="album py-5 bg-light">
             <div class="container">
@@ -17,21 +17,26 @@
                                  <% end %>
                                     <div class="card-body">
                                         <h5 class="card-title"><%= product.name %></h5>
-                                        <p class="card-text">Salon name:<%= product.salon.name %></p>
-                                        <p class="card-text">Price: <%= product.price %></p>
+                                        <p class="card-text"><%=t('product.salon')%>:<%= product.salon.name %></p>
+                                        <p class="card-text"><%=t('product.price')%>: <%= product.price %></p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
-
-                                                    <%= link_to 'Edit', edit_product_path(product) ,class:"btn btn-sm btn-outline-secondary" %>
-                                                    <%= link_to 'Destroy', product_path(product), method: :delete , class: "btn btn-sm btn-outline-secondary" %>
-                                                    <%= link_to 'Show', product_path(product) ,class:"btn btn-sm btn-outline-secondary" %>
-                                                    <%= link_to 'Size', sizes_path(id: product.id) ,class:"btn btn-sm btn-outline-secondary" %>
+                                                    <%= link_to t('button.edit'), edit_product_path(product) ,class:"btn btn-sm btn-outline-secondary" %>
+                                                    <%= link_to t('button.destroy'), product_path(product), method: :delete , class: "btn btn-sm btn-outline-secondary" %>
+                                                    <%= link_to t('button.show'), product_path(product) ,class:"btn btn-sm btn-outline-secondary" %>
+                                                    <%= link_to t('button.size'), sizes_path(id: product.id) ,class:"btn btn-sm btn-outline-secondary" %>
                                                 </div>
                                             </div>
                                     </div>
                                 </div>
                             </div>
                     <% end %>
+                           <div class="container col-md-5">
+    <%= paginate @products,
+              theme: 'bootstrap-5',
+              pagination_class: "pagination flex-wrap justify-content-center",
+              nav_class: "d-inline-block bg-light" %>
+  </div>
                 </div>
             </div>
         </div>

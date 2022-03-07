@@ -1,32 +1,32 @@
 # frozen_string_literal: true
 
 class RentalsController < ApplicationController
-  NUMBER_ITEMS_PER_PAGE = 7
+  NUMBER_ITEMS_PER_PAGE = 9
   # GET /rentals or /rentals.json
   def index
     if current_user[:role] == 'Buyer'
       @rentals =
         if params[:finished]
-          Rental.where(buyer_info_id: current_user.profileable, status: false,
+          Rental.includes(:product).where(buyer_info_id: current_user.profileable, status: false,
                        approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         elsif params[:rental]
-          Rental.where(buyer_info_id: current_user.profileable, status: true,
+          Rental.includes(:product).where(buyer_info_id: current_user.profileable, status: true,
                        approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         else
-          Rental.where(buyer_info_id: current_user.profileable).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+          Rental.includes(:product).where(buyer_info_id: current_user.profileable).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         end
     else
       @list_salons = current_user.profileable.salons
       @list_products = Product.where(salon_id: @list_salons)
       @rentals =
         if params[:finished]
-          Rental.where(product_id: @list_products, status: false,
+          Rental.includes(:product).where(product_id: @list_products, status: false,
                        approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         elsif params[:rental]
-          Rental.where(product_id: @list_products, status: true,
+          Rental.includes(:product).where(product_id: @list_products, status: true,
                        approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         else
-          Rental.where(product_id: @list_products).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+          Rental.includes(:product).where(product_id: @list_products).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         end
     end
   end
