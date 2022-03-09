@@ -1,0 +1,21 @@
+<div class="container block-2 f">
+  <div class="col-md-4">
+    <div class="row border shadow-sm position-relative">
+      <div class="col-md-9 items">
+        <%= form_for @size do |f| %>
+          <div class="field">
+            <%= f.label :size %><br>
+            <%= f.text_field :size, required: true, class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= f.label :count_size %><br>
+            <%= f.text_field :count_size, required: true, class: "form-control" %>
+          </div>
+          <div class="actions">
+            <%= f.submit 'Save', class:"btn btn-primary items-btn" %>
+          </div>
+        <% end %>
+     </div>
+    </div>
+  </div>
+</div>
