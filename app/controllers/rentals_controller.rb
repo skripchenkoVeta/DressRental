@@ -8,10 +8,10 @@ class RentalsController < ApplicationController
       @rentals =
         if params[:finished]
           Rental.includes(:product).where(buyer_info_id: current_user.profileable, status: false,
-                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+                                          approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         elsif params[:rental]
           Rental.includes(:product).where(buyer_info_id: current_user.profileable, status: true,
-                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+                                          approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         else
           Rental.includes(:product).where(buyer_info_id: current_user.profileable).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         end
@@ -21,10 +21,10 @@ class RentalsController < ApplicationController
       @rentals =
         if params[:finished]
           Rental.includes(:product).where(product_id: @list_products, status: false,
-                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+                                          approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         elsif params[:rental]
           Rental.includes(:product).where(product_id: @list_products, status: true,
-                       approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+                                          approve: true).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         else
           Rental.includes(:product).where(product_id: @list_products).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
         end
