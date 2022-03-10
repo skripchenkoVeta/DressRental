@@ -1,30 +1,34 @@
 <div class="row block">
     <%= render 'seller_profile/listmenu' %>
     <div class="col-8">
-      <%= link_to 'All rentals', rentals_path, class: "btn btn-sm btn-outline-secondary" %>
-      <%= link_to 'Completed rentals', rentals_path(finished: true), class: "btn btn-sm btn-outline-secondary" %>
-      <%= link_to 'Active rentals', rentals_path(rental: true), class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to t('rental.all_rentals'), rentals_path, class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to t('rental.completed_rentals'), rentals_path(finished: true), class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to t('rental.active_rentals'), rentals_path(rental: true), class: "btn btn-sm btn-outline-secondary" %>
+    </div>
+</div>
       <table class="table table-striped block-2">
         <thead>
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Surname</th>
-            <th scope="col">Product</th>
-            <th scope="col">Salon</th>
-            <th scope="col">Size</th>
-            <th scope="col">Price for 1 day</th>
-            <th scope="col">Deposit (30 BYN)</th>
-            <th scope="col">Total</th>
-            <th scope="col">Amount of days</th>
-            <th scope="col">Start rental</th>
-            <th scope="col">End rental</th>
-            <th scope="col">Status</th>
-            <th scope="col">Sanction</th>
-            <th scope="col">Approve</th>
+          <th scope="col"><%= t('rental.page')%></th>
+            <th scope="col"><%= t('rental.name')%></th>
+            <th scope="col"><%= t('rental.surname')%></th>
+            <th scope="col"><%= t('rental.product')%></th>
+            <th scope="col"><%= t('rental.salon')%></th>
+            <th scope="col"><%= t('rental.size')%></th>
+            <th scope="col"><%= t('rental.price')%></th>
+            <th scope="col"><%= t('rental.deposit')%> (30 BYN)</th>
+            <th scope="col"><%= t('rental.total')%></th>
+            <th scope="col"><%= t('rental.amount_of_days')%></th>
+            <th scope="col"><%= t('rental.start')%></th>
+            <th scope="col"><%= t('rental.end')%></th>
+            <th scope="col"><%= t('rental.status')%></th>
+            <th scope="col"><%= t('rental.sanction')%></th>
+            <th scope="col"><%= t('rental.approve')%></th>
           </tr>
         </thead>
         <% @rentals.each_with_index do |index| %>
           <tr>
+          <td><%= link_to t('button.show'), rental_path(index),method: :get , :class => 'btn btn-sm btn-outline-secondary' %></td>
             <td><%= index.buyer_info.user.name %></td>
             <td><%= index.buyer_info.user.surname %></td>
             <td><%= index.product.name %></td>
@@ -42,30 +46,28 @@
             <td><%= index.start_rent.strftime("%m/%d/%Y") %></td>
             <td><%= index.end_rent.strftime("%m/%d/%Y") %></td>
             <% if index.status == true && index.approve == true %>
-              <td><%= button_to "Finish rental",action:"status", status_id: index.id, method: :post, :class => 'btn btn-primary' %>
-             <td>  <%= button_to "Sanction",action:"sanction",rent_id: index.id, method: :post, :class => 'btn btn-primary' %></td>
+              <td><%= button_to t('rental.finish_rental'),action:"status", status_id: index.id, method: :post, :class => 'btn btn-primary' %>
+             <td>  <%= button_to t('rental.sanction'),action:"sanction",rent_id: index.id, method: :post, :class => 'btn btn-primary' %></td>
             <% elsif index.approve == false %>
-              <td>Need approved</td>
-              <td>Need approved</td>
+              <td><%= t('rental.need_approved')%></td>
+              <td><%= t('rental.need_approved')%></td>
             <% else %>
-              <td>Rental finished</td>
-              <td>Rental finished</td>
+              <td><%= t('rental.rental_finished')%></td>
+              <td><%= t('rental.rental_finished')%></td>
             <% end %>
             <% if index.approve == false %>
-              <td><%= button_to "Approve",action:"approve", approve_id: index.id, method: :post, :class => 'btn btn-primary' %>
-              <%= link_to "Reject", rental_path(index),method: :delete , :class => 'btn btn-primary' %></td>
+              <td><%= button_to t('rental.approve_rent'),action:"approve", approve_id: index.id, method: :post, :class => 'btn btn-primary' %>
+              <%= link_to t('rental.reject'), rental_path(index),method: :delete , :class => 'btn btn-primary' %></td>
             <% else %>
-              <td>Approved</td>
+              <td><%= t('rental.approved')%></td>
             <% end %>
           </tr>
         <% end %>
       </table>
-    </div>
     <div class="container col-md-5">
     <%= paginate @rentals,
               theme: 'bootstrap-5',
               pagination_class: "pagination flex-wrap justify-content-center",
               nav_class: "d-inline-block bg-light" %>
-</div>
 </div>
 <div class="rentals-bottom"></div>

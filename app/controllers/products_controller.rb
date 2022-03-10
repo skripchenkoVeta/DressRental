@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  NUMBER_ITEMS_PER_PAGE = 4
+  NUMBER_ITEMS_PER_PAGE_INDEX = 4
+  NUMBER_ITEMS_PER_PAGE = 9
 
   def index
-    @products = Product.includes(:salon).includes(:product_type).includes(:avatar_attachment).all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
+    @products = Product.includes(:salon).includes(:product_type).includes(:avatar_attachment).all.page(params[:page]).per(NUMBER_ITEMS_PER_PAGE_INDEX)
   end
 
   def menu
     @list_salons = current_user.profileable.salons
-    @products = Product.includes(:avatar_attachment).where(salon_id: @list_salons)
+    @products = Product.includes(:salon).includes(:avatar_attachment).where(salon_id: @list_salons).page(params[:page]).per(NUMBER_ITEMS_PER_PAGE)
   end
 
   def show

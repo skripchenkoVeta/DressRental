@@ -2,14 +2,14 @@
   <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">address</th>
-          <th scope="col">Owner's name</th>
-          <th scope="col">Owner's surname</th>
-          <th scope="col">Photo</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Destroy</th>
-          <th scope="col">Show</th>
+          <th scope="col"><%= t('admin.name')%></th>
+          <th scope="col"><%= t('salons.address')%></th>
+          <th scope="col"><%= t('salons.owners_name')%></th>
+          <th scope="col"><%= t('salons.owners_surname')%></th>
+          <th scope="col"><%= t('salons.photo')%></th>
+          <th scope="col"><%= t('button.edit')%></th>
+          <th scope="col"><%= t('button.destroy')%></th>
+          <th scope="col"><%= t('button.show')%></th>
         </tr>
       </thead>
       <% @salons.each_with_index do |salon| %>
@@ -24,9 +24,9 @@
             <% else %>
                 <img class="card-img-top index-image" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20288%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17e22579a47%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17e22579a47%22%3E%3Crect%20width%3D%22288%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2296.84375%22%20y%3D%22118.8%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">
             <% end %></td>
-            <td><%= link_to 'Edit', edit_salon_path(salon) ,class: "btn btn-sm btn-outline-secondary" %></td>
-            <td><%= link_to 'Destroy', salon_path(salon), method: :delete,class: "btn btn-sm btn-outline-secondary" %></td>
-            <td><%= link_to 'Show', salon_path(salon),class: "btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to t('button.edit'), edit_salon_path(salon) ,class: "btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to t('button.destroy'), salon_path(salon), method: :delete,class: "btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to t('button.show'), salon_path(salon),class: "btn btn-sm btn-outline-secondary" %></td>
           </tr>
       <% end %>
   </table>

@@ -1,19 +1,19 @@
 <% if current_user %>
   <table class="table table-striped">
     <thead>
-          <%= link_to 'Create new product type', new_product_type_path, class: 'btn btn-outline-secondary' ,style:"margin-top:60px;" %>
+          <%= link_to t('product_type.create'), new_product_type_path, class: 'btn btn-outline-secondary' ,style:"margin-top:60px;" %>
         <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Destroy</th>
+        <th scope="col"><%=t('admin.name')%></th>
+        <th scope="col"><%=t('button.edit')%></th>
+        <th scope="col"><%=t('button.destroy')%></th>
       </tr>
     </thead>
     <tbody>
       <% @product_type.each_with_index do |index| %>
         <tr>
           <td><%= index.name %></td>
-          <td><%= link_to 'Edit', edit_product_type_path(index) ,class: "btn btn-sm btn-outline-secondary" %></td>
-          <td><%= link_to 'Destroy', product_type_path(index), method: :delete,class: "btn btn-sm btn-outline-secondary" %></td>
+          <td><%= link_to t('button.edit'), edit_product_type_path(index) ,class: "btn btn-sm btn-outline-secondary" %></td>
+          <td><%= link_to t('button.destroy'), product_type_path(index), method: :delete,class: "btn btn-sm btn-outline-secondary" %></td>
         </tr>
       <% end %>
     </tbody>

@@ -3,9 +3,9 @@
     <div class="row border shadow-sm position-relative">
       <div class="col-md-9 items">
         <% if current_user.role == 'Admin' %>
-          <%= link_to 'Back', salons_path, class: 'btn btn-primary items-btn' %></td>
+          <%= link_to t('button.back'), salons_path, class: 'btn btn-primary items-btn' %></td>
         <% else %>
-          <%= link_to 'Back', salon_menu_path, class: 'btn btn-primary items-btn' %></td>
+          <%= link_to t('button.back'), salon_menu_path, class: 'btn btn-primary items-btn' %></td>
         <% end %>
         <%= form_for @salon do |f| %>
         <%if current_user.role != 'Admin'%>
@@ -21,7 +21,7 @@
             <%= f.file_field :picture %>
           </div>
           <div class="actions">
-            <%= f.submit 'Save', class:"btn btn-primary items-btn" %>
+            <%= f.submit t('button.save'), class:"btn btn-primary items-btn" %>
           </div>
         <% end %>
      </div>
