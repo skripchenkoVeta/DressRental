@@ -27,6 +27,7 @@ ru:
     back: "Назад"
     find: "Найти"
     send: "Отправить"
+    size: "Размер"
   catalog:
     salons: "Салоны"
     products: "Товары"
@@ -99,6 +100,23 @@ ru:
     about: "Об аренде"
     inactive: "Неактивно"
     active: "Активно"
+    product: "Товар"
+  size:
+    size: "Размер"
+    create: "Добавить размер"
+    count: "Количество"
+    product: "Товар"
+  signup:
+    signup: "Зарегистрироваться"
+  login:
+    please: "Пожалуйста войдите в свой аккаунт"
+    login: "Войти"
+    remember: "Запомнить меня"
+    forgotpassword: "Забыли пароль?"
+    github: "Войти через GitHub"
+    instractions: "Не получили инструкции по подтверждению?"
+
+
 
 
 

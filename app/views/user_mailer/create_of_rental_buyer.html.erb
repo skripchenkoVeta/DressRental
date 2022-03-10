@@ -6,10 +6,10 @@
   <body>
     <h1>Привет, <%= @user.product.salon.seller_info.user.name %> <%= @user.product.salon.seller_info.user.surname %></h1>
     <p>
-      <%= @user.buyer_info.user.name %> <%= @user.buyer_info.user.surname %> запросил на аренду товар "<%= @user.product.name %>", который принадлежит салону "<%= @user.product.salon.name %>".  </p>
+      Вы <%= @user.buyer_info.user.name %> <%= @user.buyer_info.user.surname %> запросили на аренду товар "<%= @user.product.name %>", который принадлежит салону "<%= @user.product.salon.name %>".  </p>
     <p>
       Аренда начнется <%= @user.start_rent.to_formatted_s(:long) %> и продлиться до <%= @user.end_rent.to_formatted_s(:long) %> включительно.
     </p>
-    <p>Войдите в аккаунт и одобрите/отмените заявку!</p>
+    <p>Войдите в аккаунт для получения более подробной информации или отмените заявку, пока она не была одобрена!</p>
   </body>
 </html>

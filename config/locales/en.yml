@@ -99,3 +99,18 @@ en:
     about: "About the rental"
     inactive: "Inactive"
     active: "Active"
+    product: "Product"
+  size:
+    size: "Size"
+    create: "Create new size"
+    count: "Count"
+    product: "Product"
+  signup:
+    signup: "Sign up"
+  login:
+    please: "Please login to your account"
+    login: "Log in"
+    remember: "Remember me"
+    forgotpassword: "Forgot your password?"
+    github: "Sign in with GitHub"
+    instractions: "Didn't receive confirmation instructions?"

@@ -75,6 +75,7 @@ class RentalsController < ApplicationController
 
     if @rental.save
       UserMailer.with(user: @rental).create_of_rental.deliver_now
+      UserMailer.with(user: @rental).create_of_rental_buyer.deliver_now
       flash[:success] = 'Success'
       redirect_to home_catalog_path
     else

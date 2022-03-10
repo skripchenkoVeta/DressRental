@@ -1,11 +1,11 @@
 <div class="block-2">
-<%= link_to 'Create new size', new_size_path(id: @product.id), class:"btn btn-outline-secondary" %>
+<%= link_to t('size.create'), new_size_path(id: @product.id), class:"btn btn-outline-secondary" %>
   <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Product name</th>
-          <th scope="col">Size</th>
-          <th scope="col">Count</th>
+          <th scope="col"><%= t('rental.product')%></th>
+          <th scope="col"><%= t('rental.size')%></th>
+          <th scope="col"><%= t('rental.count')%></th>
         </tr>
       </thead>
       <% @sizes.each_with_index do |size| %>
@@ -13,8 +13,8 @@
             <td><%= size.product.name %></td>
             <td><%= size.size %></td>
             <td><%= size.count_size %></td>
-            <td><%= link_to 'Edit', edit_size_path(size) ,class: "btn btn-sm btn-outline-secondary" %></td>
-            <td><%= link_to 'Destroy', size_path(size), method: :delete,class: "btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to t('button.edit'), edit_size_path(size) ,class: "btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to t('button.destroy'), size_path(size), method: :delete,class: "btn btn-sm btn-outline-secondary" %></td>
           </tr>
       <% end %>
   </table>

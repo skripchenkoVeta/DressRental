@@ -4,26 +4,32 @@ class UserMailer < ApplicationMailer
     def welcome_email
       @user = params[:user]
       @url  = 'http://example.com/login'
-      mail(to: @user.email, subject: 'Welcome to Dress Rental')
+      mail(to: @user.email, subject: 'Добро пожаловать в Dress Rental')
     end
     def create_of_rental
       @user = params[:user]
       @url  = 'http://example.com/login'
-      mail(to: @user.product.salon.seller_info.user.email, subject: 'New application on rental')
+      mail(to: @user.product.salon.seller_info.user.email, subject: 'Заявка на аренду')
+      
+    end
+    def create_of_rental_buyer
+      @user = params[:user]
+      @url  = 'http://example.com/login'
+      mail(to: @user.buyer_info.user.email, subject: 'Уведомление об отправке заявки на аренду')
     end
     def approved
       @user = params[:user]
       @url  = 'http://example.com/login'
-      mail(to: @user.buyer_info.user.email, subject: 'Your rental application was approved!')
+      mail(to: @user.buyer_info.user.email, subject: 'Ваша заявка на аренду была одобрена!')
     end
     def rejected
       @user = params[:user]
       @url  = 'http://example.com/login'
-      mail(to: @user.buyer_info.user.email, subject: 'Your rental application was rejected')
+      mail(to: @user.buyer_info.user.email, subject: 'Ваша заявка на аренду была отклонена!')
     end
     def sanction
       @user = params[:user]
       @url  = 'http://example.com/login'
-      mail(to: @user.buyer_info.user.email, subject: 'Dear DressRental User!')
+      mail(to: @user.buyer_info.user.email, subject: 'Дорогой пользователь DressRental')
     end
 end
