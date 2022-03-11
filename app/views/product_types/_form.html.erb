@@ -4,7 +4,7 @@
       <%= link_to t('button.back'), product_types_path, class: 'btn btn-primary' %></td>
       <%= form_for @product_type do |f| %>
         <div class="field">
-          <%= f.label :name %><br>
+          <label>Название</label>
           <%= f.text_field :name, required: true, class: "form-control" %>
         </div>
         <div class="actions">

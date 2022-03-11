@@ -22,8 +22,8 @@
               <strong class="d-inline-block mb-2 product-price"><%= t('rental.total')%>: <%= ((@rent.end_rent - @rent.start_rent)/60/60/24 * @rent.product.price + 30).round(2) %> BYN</strong>
               <%end%>
                <strong class="d-inline-block mb-2 product-price"><%= t('rental.amount_of_days')%>: <%= ((@rent.end_rent - @rent.start_rent)/60/60/24).round %></strong>
-              <strong class="d-inline-block mb-2 product-price"><%= t('rental.start')%>: <%= @rent.start_rent.strftime("%m/%d/%Y")%></strong>
-              <strong class="d-inline-block mb-2 product-price"><%= t('rental.end')%>: <%= @rent.end_rent.strftime("%m/%d/%Y") %></strong>
+              <strong class="d-inline-block mb-2 product-price"><%= t('rental.start')%>: <%= @rent.start_rent.strftime("%d/%m/%Y")%></strong>
+              <strong class="d-inline-block mb-2 product-price"><%= t('rental.end')%>: <%= @rent.end_rent.strftime("%d/%m/%Y") %></strong>
         <strong class="d-inline-block mb-2 product"><%= t('product.type')%>: <%= @rent.product.product_type_name %></strong>
         <strong class="d-inline-block mb-2 product"><%= t('rental.salon')%>: <%= link_to @rent.product.salon.name, salon_path(@rent.product.salon.id),class:"default-link" %></strong>
           <% if @rent.status == true && @rent.approve == true %>

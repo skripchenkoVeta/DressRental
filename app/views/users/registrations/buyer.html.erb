@@ -17,15 +17,15 @@
                   <%= f.hidden_field :profileable_type ,value: 'BuyerInfo' %>
                   <%= f.hidden_field :role , value: 'Buyer' %>
   <div class="field form-outline mb-4">
-    <%= f.label :name %><br>
+    <label>Имя</label>
     <%= f.text_field :name , class:"form-control" %>
   </div>
   <div class="field form-outline mb-4">
-    <%= f.label :surname %><br>
+    <label>Фамилия</label>
     <%= f.text_field :surname , class:"form-control" %>
   </div>
   <div class="field form-outline mb-4">
-    <%= f.label :number %><br>
+    <label>Номер телефона</label>
     <%= f.telephone_field :number , class:"form-control" %>
   </div>
   <div class="field form-outline mb-4">
@@ -34,26 +34,26 @@
   </div>
 
   <div class="field form-outline mb-4">
-    <%= f.label :password %>
+    <label>Пароль</label>
     <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(<%= @minimum_password_length %> минимальное количество символов)</em>
     <% end %><br>
     <%= f.password_field :password, autocomplete: "new-password" , class:"form-control" %>
   </div>
 
   <div class="field form-outline mb-4">
-    <%= f.label :password_confirmation %><br>
+    <label>Подтвердите пароль</label>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:"form-control" %>
   </div>
 
   <%= f.fields_for :buyer_infos do |builder| %>
     <%= builder.hidden_field :freeze , value: 'false' %>
     <div class="field form-outline mb-4">
-      <%= builder.label :birthday %><br>
+      <label>День Рождения</label><br>
       <%= builder.date_select :birthday , order: [:month, :day, :year] ,start_year: 1900, end_year: Time.now.year, class: "form-control" %>
     </div>
     <div class="field form-outline mb-4">
-      <%= builder.label :address %><br>
+      <label>Адрес</label>
       <%= builder.text_field :address,class:"form-control" %>
     </div>
 

@@ -43,8 +43,8 @@
               <%end%>
             <td><%= ((index.end_rent - index.start_rent)/60/60/24).round %></td>
             
-            <td><%= index.start_rent.strftime("%m/%d/%Y") %></td>
-            <td><%= index.end_rent.strftime("%m/%d/%Y") %></td>
+            <td><%= index.start_rent.strftime("%d/%m/%Y") %></td>
+            <td><%= index.end_rent.strftime("%d/%m/%Y") %></td>
             <% if index.status == true && index.approve == true %>
               <td><%= button_to t('rental.finish_rental'),action:"status", status_id: index.id, method: :post, :class => 'btn btn-primary' %>
              <td>  <%= button_to t('rental.sanction'),action:"sanction",rent_id: index.id, method: :post, :class => 'btn btn-primary' %></td>

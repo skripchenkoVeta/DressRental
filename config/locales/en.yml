@@ -77,6 +77,7 @@ en:
     product_name: "Product"
     salon: "Salon"
     size: "Size"
+    count: "Count"
     price: "Price for 1 day"
     deposit: "Deposit (30 BYN)"
     total: "Total"

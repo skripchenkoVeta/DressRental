@@ -9,25 +9,25 @@
         <% end %>
         <%= form_for @product do |f| %>
           <div class="field">
-            <%= f.label :name %><br>
+            <label>Название</label>
             <%= f.text_field :name, required: true, class: "form-control" %>
           </div>
           <div class="field">
-            <%= f.label :description %><br>
+            <label>Описание</label>
             <%= f.text_field :description , required: true, class: "form-control" ,:minlength => 15 %>
           </div>
           <div class="field">
-            <%= f.label :price %><br>
+            <label>Цена, BYN</label>
             <%= f.text_field :price, required: true, class: "form-control" %>
           </div>
           <%= f.file_field :avatar %>
-          <%= f.label :category %><br>
+          <label>Категория</label><br>
           <%= f.collection_select :product_type_id, ProductType.all, :id, :name %><br>
           <% if current_user.role == 'Seller' %>
-            <%= f.label :salon %><br>
+            <label>Салон</label><br>
             <%= f.collection_select :salon_id, current_user.profileable.salons, :id, :name %>
           <% else %>
-            <%= f.label :salon %><br>
+            <label>Салон</label><br>
             <%= f.collection_select :salon_id, Salon.all, :id, :name %>
           <% end %>
           <div class="actions">
