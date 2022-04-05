@@ -25,7 +25,7 @@
                                         <% else %>
                                         <strong class="d-inline-block mb-2 product"><%= t('rental.status')%>: <%= t('rental.rental_finished')%> </strong>
                                         <% end %>
-                                        <p class="card-text product"><%= t('rental.start')%>: <%= index.start_rent.strftime("%m/%d/%Y") %><br><%= t('rental.end')%>: <%= index.end_rent.strftime("%m/%d/%Y") %></p>
+                                        <p class="card-text product"><%= t('rental.start')%>: <%= index.start_rent.strftime("%d/%m/%Y") %><br><%= t('rental.end')%>: <%= index.end_rent.strftime("%d/%m/%Y") %></p>
                                           <%if (index.end_rent - index.start_rent)/60/60/24 == 0%>
                                             <p class="card-text product"><%= t('rental.total')%>: <%= (index.product.price + 30).round(2) %> BYN<</p>
                                           <%else%>

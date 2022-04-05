@@ -133,8 +133,11 @@ ActiveRecord::Schema.define(version: 2022_02_21_215341) do
 
   create_table "sizes", force: :cascade do |t|
     t.integer "size"
+    t.integer "count_size"
+    t.bigint "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_sizes_on_product_id"
   end
 
   create_table "users", force: :cascade do |t|

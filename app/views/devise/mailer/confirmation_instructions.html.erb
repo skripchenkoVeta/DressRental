@@ -1,11 +1,16 @@
 <% if @role == 'Seller' %>
-    <p>Welcome <%= @email %>!</p>
+    <p>Добро пожаловать <%= @email %>!</p>
 
-    <p>Your regestration request is accepted! Soon you will receive an email with your registration confirmation</p>
+    <p>Ваша заявка на регистрацию была принята! Ожидайте подтверждения вашего аккаунта!</p>
+
+    <p>Спасибо, что выбрали нас. <br>С уважением, DressRental</p>
 <% else %>
-    <p>Welcome <%= @email %>!</p>
+    <p>Добро пожаловать <%= @email %>!</p>
 
-    <p>You are successfully registered in DressRental service, please follow link to access your Dashboard:</p>
+<p>Вы можете активировать свой аккаунт перейдя по ссылке ниже:</p>
 
-    <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to "Подтвердить аккаунт", confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>С уважением, DressRental</p>
+
 <% end %>

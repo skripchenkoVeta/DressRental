@@ -12,11 +12,11 @@
           <%= f.hidden_field :seller_info_id , value: current_user.profileable_id %>
           <%end%>
           <div class="field">
-            <%= f.label :name %><br>
+            <label>Название</label>
             <%= f.text_field :name, required: true, class: "form-control" %>
           </div>
           <div class="field">
-            <%= f.label :address %><br>
+            <label>Адрес</label>
             <%= f.text_field :address, required: true, class: "form-control" %>
             <%= f.file_field :picture %>
           </div>

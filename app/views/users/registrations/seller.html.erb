@@ -16,15 +16,15 @@
   <%= f.hidden_field :profileable_type ,value: 'SellerInfo' %>
   <%= f.hidden_field :role , value: 'Seller' %>
   <div class="field form-outline mb-4">
-    <%= f.label :name %><br>
+    <label>Имя</label>
     <%= f.text_field :name , class:"form-control" %>
   </div>
   <div class="field form-outline mb-4">
-    <%= f.label :surname %><br>
+    <label>Фамилия</label>
     <%= f.text_field :surname , class:"form-control" %>
   </div>
   <div class="field form-outline mb-4">
-    <%= f.label :number %><br>
+    <label>Номер телефона</label>
     <%= f.telephone_field :number , class:"form-control" %>
   </div>
   <div class="field form-outline mb-4">
@@ -33,34 +33,34 @@
   </div>
 
   <div class="field form-outline mb-4">
-    <%= f.label :password %>
+    <label>Пароль</label>
     <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(<%= @minimum_password_length %> минимальное количество символов)</em>
     <% end %><br>
     <%= f.password_field :password, autocomplete: "new-password" , class:"form-control",:minlength => 7 %>
   </div>
 
   <div class="field form-outline mb-4">
-    <%= f.label :password_confirmation %><br>
+    <label>Подтвердите пароль</label>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:"form-control",:minlength => 7 %>
   </div>
 
   <%= f.fields_for :seller_infos do |builder| %>
     <%= builder.hidden_field :freeze , value: 'false' %>
     <div class="field form-outline mb-4">
-      <%= builder.label :kpp %><br>
+      <label>КПП</label>
       <%= builder.text_field :kpp,class:"form-control" ,:maxlength => 9, :minlength => 9 %>
     </div>
     <div class="field form-outline mb-4">
-      <%= builder.label :unp %><br>
+      <label>УНП</label>
       <%= builder.text_field :unp,class:"form-control", :maxlength => 9, :minlength => 9 %>
     </div>
       <div class="field form-outline mb-4">
-      <%= builder.label :supplier_name %><br>
+      <label>Название организации</label>
       <%= builder.text_field :supplier_name,class:"form-control" %>
     </div>
     <div class="field form-outline mb-4">
-      <%= builder.label 'form_organization' %><br>
+      <label>Тип организации</label><br>
       <%= builder.collection_select :seller_type_id, SellerType.all, :id, :name  ,class:"form-control" %>
     </div>
 
